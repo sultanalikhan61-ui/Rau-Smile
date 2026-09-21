@@ -188,28 +188,27 @@
         <!-- Карточка таймера -->
         <section class="glass-card rounded-3xl p-6">
             <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-sm border border-rose-100 max-w-md mx-auto my-6 text-center">
-                <p class="text-xs uppercase tracking-widest text-rose-500 font-semibold mb-2">⏳ До нашей встречи осталось</p>
+                <p class="text-xs uppercase tracking-widest text-rose-500 font-semibold mb-3">⏳ До нашей встречи</p>
                 
-                <div class="grid grid-cols-4 gap-2 my-4">
-                    <div class="bg-rose-50/80 p-2 rounded-xl border border-rose-100">
-                        <span id="days" class="text-2xl sm:text-3xl font-extrabold text-gray-800 block">00</span>
+                <!-- Счетчики месяцев и дней -->
+                <div class="grid grid-cols-2 gap-3 my-4">
+                    <div class="bg-rose-50/80 p-3 rounded-xl border border-rose-100">
+                        <span id="months" class="text-3xl font-extrabold text-gray-800 block">00</span>
+                        <span class="text-[10px] text-gray-500 uppercase font-medium">месяцев</span>
+                    </div>
+                    <div class="bg-rose-50/80 p-3 rounded-xl border border-rose-100">
+                        <span id="days" class="text-3xl font-extrabold text-gray-800 block">00</span>
                         <span class="text-[10px] text-gray-500 uppercase font-medium">дней</span>
                     </div>
-                    <div class="bg-rose-50/80 p-2 rounded-xl border border-rose-100">
-                        <span id="hours" class="text-2xl sm:text-3xl font-extrabold text-gray-800 block">00</span>
-                        <span class="text-[10px] text-gray-500 uppercase font-medium">часов</span>
-                    </div>
-                    <div class="bg-rose-50/80 p-2 rounded-xl border border-rose-100">
-                        <span id="minutes" class="text-2xl sm:text-3xl font-extrabold text-gray-800 block">00</span>
-                        <span class="text-[10px] text-gray-500 uppercase font-medium">минут</span>
-                    </div>
-                    <div class="bg-rose-50/80 p-2 rounded-xl border border-rose-100">
-                        <span id="seconds" class="text-2xl sm:text-3xl font-extrabold text-gray-800 block">00</span>
-                        <span class="text-[10px] text-gray-500 uppercase font-medium">секунд</span>
-                    </div>
                 </div>
-                
-                <p class="text-xs text-gray-500 font-medium">Жду тебя 22 сентября 2027 года ❤️</p>
+            
+                <!-- Прогресс-бар -->
+                <div class="w-full bg-gray-100 rounded-full h-2.5 mb-2 overflow-hidden border border-rose-100">
+                    <div id="progressBar" class="bg-rose-500 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <p id="progressText" class="text-[11px] text-rose-500 font-semibold mb-1">0% пройденного пути</p>
+            
+                <p class="text-xs text-gray-500 font-medium mt-3">Жду тебя 22 сентября 2027 года ❤️</p>
             </div>
         </section>
 
@@ -725,6 +724,44 @@
             renderGallery();
             renderChecklist();
         };
+
+        // Даты: отлёт и возвращение
+        const startDate = new Date('2026-09-19T00:00:00').getTime();
+        const targetDate = new Date('2027-09-22T00:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const totalDuration = targetDate - startDate;
+            const timePassed = now - startDate;
+            const difference = targetDate - now;
+        
+            if (difference > 0) {
+                // Расчет месяцев и оставшихся дней
+                const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const months = Math.floor(totalDays / 30.44); // среднее количество дней в месяце
+                const days = Math.floor(totalDays % 30.44);
+        
+                // Процент пройденного пути
+                const progressPercent = Math.min(100, Math.max(0, (timePassed / totalDuration) * 100)).toFixed(1);
+        
+                // Обновляем элементы на странице (проверь id в HTML)
+                const monthsElem = document.getElementById('months');
+                const daysElem = document.getElementById('days');
+                const progressElem = document.getElementById('progressBar');
+                const progressText = document.getElementById('progressText');
+        
+                if (monthsElem) monthsElem.textContent = String(months).padStart(2, '0');
+                if (daysElem) daysElem.textContent = String(days).padStart(2, '0');
+                if (progressElem) progressElem.style.width = `${progressPercent}%`;
+                if (progressText) progressText.textContent = `${progressPercent}% пройденного пути`;
+            } else {
+                if (document.getElementById('days')) document.getElementById('days').textContent = '00';
+                if (document.getElementById('months')) document.getElementById('months').textContent = '00';
+            }
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Обновляем раз в минуту, чтобы не мельтешить секундами
     </script>
 </body>
 </html>
