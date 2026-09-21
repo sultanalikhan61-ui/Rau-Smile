@@ -3,354 +3,848 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rau-Hug — Твой уютный уголок</title>
+    <title>Наше Уютное Местечко ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FFF9F5',
+                        rose: {
+                            50: '#FFF0F3',
+                            100: '#FFE3E8',
+                            200: '#FFC6D0',
+                            300: '#FFA0B2',
+                            400: '#FF6B8B',
+                            500: '#FF3B62'
+                        },
+                        peach: {
+                            100: '#FFE8D6',
+                            200: '#FFD7BA',
+                        },
+                        lavender: {
+                            100: '#E8E8E8',
+                            200: '#E0C3FC',
+                            300: '#8EC5FC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        rounded: ['Comfortaa', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-color: #fffaf0;
-            --card-bg: #ffffff;
-            --accent-pink: #ff8fa3;
-            --soft-pink: #ffc2d1;
-            --deep-pink: #ff4d6d;
-            --text-color: #4a4e69;
-            --gold: #ffb703;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 50px;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe8d6 50%, #e0c3fc 100%);
+            background-attachment: fixed;
+            font-family: 'Nunito', sans-serif;
             overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 20px 20px;
-            background: linear-gradient(180deg, #ffe5ec 0%, var(--bg-color) 100%);
+        h1, h2, h3, .font-rounded {
+            font-family: 'Comfortaa', cursive;
         }
 
-        h1 {
-            color: var(--deep-pink);
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #6c757d;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border: 1px solid #ffe5ec;
-        }
-
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
-            color: var(--deep-pink);
-            margin-bottom: 15px;
-        }
-
-        .sos-btn {
-            background: linear-gradient(135deg, #ff4d6d, #ff758f);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 18px;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .sos-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
-        }
-
-        .music-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: 10px;
-            border: 1px solid var(--soft-pink);
-            background: white;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-color);
-            transition: all 0.2s;
-        }
-
-        .tab-btn.active {
-            background: var(--soft-pink);
-            color: white;
-            border-color: var(--accent-pink);
-        }
-
-        .playlist-content {
-            background: #fff5f7;
-            padding: 15px;
-            border-radius: 12px;
-        }
-
-        .song-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dashed #ffd6ff;
-        }
-
-        .song-item:last-child {
-            border-bottom: none;
-        }
-
-        .song-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .song-title {
-            font-weight: bold;
-        }
-
-        .song-artist {
-            font-size: 0.85rem;
-            color: #8d99ae;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        .badge-her {
-            background: #ffe5ec;
-            color: #ff4d6d;
-        }
-
-        .badge-his {
-            background: #e0f2fe;
-            color: #0284c7;
-        }
-
-        .game-area {
-            text-align: center;
-            padding: 20px;
-            background: #f0f3ff;
-            border-radius: 15px;
-        }
-
-        .interactive-btn {
-            background: var(--accent-pink);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .modal {
+        /* Background Floating Particles */
+        .bg-particle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
         }
 
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
         }
 
-        .close-btn {
-            margin-top: 15px;
-            background: var(--text-color);
-            color: white;
-            border: none;
-            padding: 8px 16px;
+        /* Glassmorphic Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(255, 182, 193, 0.2);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 40px 0 rgba(255, 105, 180, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFA0B2;
             border-radius: 10px;
-            cursor: pointer;
+        }
+
+        /* Pulse Animation for SOS Button */
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 59, 98, 0.5), 0 0 30px rgba(255, 160, 178, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 59, 98, 0.8), 0 0 50px rgba(255, 160, 178, 0.6);
+            }
+        }
+        .sos-btn-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Smooth Canvas */
+        #gameCanvas {
+            touch-action: none;
         }
     </style>
 </head>
-<body>
+<body class="text-gray-700 min-h-screen relative pb-16">
 
-    <header>
-        <h1>❤️ Rau-Hug ❤️</h1>
-        <p class="subtitle">Твой персональный уголок тепла, радости и поддержке из дома</p>
+    <!-- Floating Background Particles -->
+    <div id="particlesContainer"></div>
+
+    <!-- Sticky Audio & Comfort Bar -->
+    <header class="sticky top-0 z-40 px-4 py-3 glass-card mb-6 border-b border-rose-100">
+        <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl animate-bounce">💖</span>
+                <span class="font-rounded font-bold text-rose-500 text-lg hidden sm:inline">Для Моего Любимого Солнышка</span>
+                <span class="font-rounded font-bold text-rose-500 text-base sm:hidden">Для Тебя ❤️</span>
+            </div>
+
+            <!-- Audio Controller -->
+            <div class="flex items-center space-x-2 bg-white/80 px-3 py-1.5 rounded-full shadow-inner border border-rose-100">
+                <button id="bgMusicToggleBtn" onclick="toggleAudio()" class="p-1.5 text-rose-500 hover:text-rose-600 rounded-full hover:bg-rose-50 transition">
+                    <i data-lucide="volume-x" id="volumeIcon"></i>
+                </button>
+                <div class="text-xs font-semibold text-gray-600">
+                    <span id="audioStatusText">Атмосфера: Выкл</span>
+                </div>
+                <!-- Simple Sound Effect Switcher -->
+                <select id="soundSelect" onchange="changeSoundTrack(this.value)" class="text-xs bg-rose-50 text-rose-600 font-bold py-1 px-2 rounded-full focus:outline-none cursor-pointer border border-rose-200">
+                    <option value="rain">🌧️ Дождь</option>
+                    <option value="fireplace">🔥 Камин</option>
+                    <option value="cafe">☕ Уютное Кафе</option>
+                </select>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- Кнопка Поддержки -->
-        <div class="card">
-            <button class="sos-btn" onclick="triggerHug()">🤗 Срочно нужны обнимашки!</button>
-        </div>
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 space-y-10 relative z-10">
 
-        <!-- Раздел Музыки -->
-        <div class="card">
-            <div class="card-title">🎵 Плейлист настроения</div>
-            <p style="margin-bottom: 15px; font-size: 0.95rem;">Выбери состояние и послушай наши любимые треки:</p>
+        <!-- HERO WELCOME SECTION -->
+        <section class="glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-rose-200/50 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-40 h-40 bg-peach-200/50 rounded-full blur-2xl pointer-events-none"></div>
+
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJ3a3U1czRxdDZmcWZ3czh2bnEzMXQ1bzE3OGQ0OWsyMGhhZWJmdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lq0h93752f6J9tijrh/giphy.gif" 
+                 alt="Cute Hug Gif" 
+                 class="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-4 rounded-2xl shadow-md border-4 border-white object-cover">
+
+            <h1 class="text-2xl sm:text-4xl font-bold text-rose-500 mb-3 leading-tight">
+                Привет, Моя Зайка! 🇬🇧❤️
+            </h1>
             
-            <div class="music-tabs">
-                <button class="tab-btn active" onclick="switchTab('sad')">🌧 Когда грустно</button>
-                <button class="tab-btn" onclick="switchTab('miss')">🧸 Когда скучаешь</button>
-                <button class="tab-btn" onclick="switchTab('energy')">✨ Для учёбы</button>
+            <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto mb-6 leading-relaxed">
+                Я знаю, как непросто быть далеко от дома, в Великобритании, учиться и привыкать к новому. Но ты невероятно сильная и умная! 
+                Если станет одиноко или взгрустнётся — открывай этот сайт. Я создал его, чтобы передавать тебе моё тепло через любое расстояние!
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="scrollToSection('quest')" class="bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition active:scale-95 flex items-center gap-2">
+                    <i data-lucide="map-pin"></i> Начать Квест Воспоминаний
+                </button>
+                <button onclick="openSosModal()" class="sos-btn-glow bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition active:scale-95 flex items-center gap-2">
+                    <i data-lucide="heart-handshake"></i> Срочно Нужны Обнимашки!
+                </button>
+            </div>
+        </section>
+
+        <!-- MUSIC & MOOD SELECTOR SECTION -->
+        <section class="glass-card rounded-3xl p-6">
+            <h2 class="text-xl font-bold text-rose-500 mb-4 flex items-center gap-2">
+                <i data-lucide="music" class="text-rose-400"></i> Плейлист настроения
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-500 mb-4">Выбери, что ты чувствуешь прямо сейчас, и послушай рекомендации от меня:</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <button onclick="showMoodPlaylist('sad')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group">
+                    <span class="text-2xl group-hover:scale-125 transition">🌧️</span>
+                    <div>
+                        <div class="font-bold text-sm text-gray-700">Когда грустно</div>
+                        <div class="text-xs text-gray-400">Тёплые слова и уют</div>
+                    </div>
+                </button>
+                <button onclick="showMoodPlaylist('miss')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group">
+                    <span class="text-2xl group-hover:scale-125 transition">🧸</span>
+                    <div>
+                        <div class="font-bold text-sm text-gray-700">Когда скучаешь</div>
+                        <div class="text-xs text-gray-400">Вспомни наши моменты</div>
+                    </div>
+                </button>
+                <button onclick="showMoodPlaylist('inspire')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group">
+                    <span class="text-2xl group-hover:scale-125 transition">✨</span>
+                    <div>
+                        <div class="font-bold text-sm text-gray-700">Для вдохновения</div>
+                        <div class="text-xs text-gray-400">Вперёд к учебе!</div>
+                    </div>
+                </button>
             </div>
 
-            <div id="playlist-container" class="playlist-content">
-                <!-- Контент загружается через JS -->
+            <!-- Playlist Display Box -->
+            <div id="playlistDisplayBox" class="mt-4 p-4 rounded-2xl bg-rose-50/60 border border-rose-200 hidden">
+                <h3 id="playlistTitle" class="font-bold text-rose-600 text-sm mb-2"></h3>
+                <p id="playlistDesc" class="text-xs sm:text-sm text-gray-600 mb-3"></p>
+                <ul id="songList" class="space-y-1 text-xs sm:text-sm text-gray-700 font-semibold list-disc list-inside"></ul>
             </div>
-        </div>
+        </section>
 
-        <!-- Интерактив / Комплименты -->
-        <div class="card">
-            <div class="card-title">✨ Генератор улыбок</div>
-            <div class="game-area">
-                <p id="compliment-text">Нажми на кнопку ниже, чтобы получить порцию тепла!</p>
-                <button class="interactive-btn" onclick="nextCompliment()">Получить обнимашку 💌</button>
+        <!-- WHEEL OF SMILES / COMPLIMENT GENERATOR -->
+        <section class="glass-card rounded-3xl p-6 text-center">
+            <h2 class="text-xl font-bold text-rose-500 mb-2 flex items-center justify-center gap-2">
+                <i data-lucide="sparkles" class="text-rose-400"></i> Генератор Заботы и Комплиментов
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-500 mb-6">Нажимай на кнопку каждый раз, когда хочешь услышать что-то приятное!</p>
+
+            <div class="min-h-[120px] flex items-center justify-center p-4 bg-white/80 rounded-2xl border border-rose-100 mb-6 shadow-inner">
+                <p id="complimentText" class="text-base sm:text-lg font-semibold text-rose-600 transition-all duration-300">
+                    "Нажми кнопку ниже, чтобы получить порцию любви! 👇"
+                </p>
             </div>
-        </div>
-    </div>
 
-    <!-- Модальное окно для SOS кнопки -->
-    <div id="hug-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2>Крепко обнимаю! 🫂</h2>
-            <p style="margin-top: 10px;">Помни: ты со всем справишься, а я всегда рядом, даже за тысячи километров!</p>
-            <button class="close-btn" onclick="closeModal()">Спасибо ❤️</button>
+            <button onclick="generateCompliment()" class="bg-rose-400 hover:bg-rose-500 text-white font-bold py-3 px-8 rounded-full shadow-md transition active:scale-95 flex items-center gap-2 mx-auto">
+                <i data-lucide="gift"></i> Хочу Комплимент / Обнимашку!
+            </button>
+        </section>
+
+        <!-- MINI QUEST / MAP OF OUR LOVE -->
+        <section id="quest" class="glass-card rounded-3xl p-6">
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-bold text-rose-500 mb-1 flex items-center justify-center gap-2">
+                    <i data-lucide="map" class="text-rose-400"></i> Квест: Карта Наших Этапов
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-500">Пройди по всем этапам и открой секретные записочки!</p>
+            </div>
+
+            <!-- Quest Stepper -->
+            <div id="questStepsContainer" class="space-y-4">
+                <!-- Steps generated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- MINI-GAME: CATCH SMILES -->
+        <section class="glass-card rounded-3xl p-6 text-center">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-2 mb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-rose-500 flex items-center justify-center sm:justify-start gap-2">
+                        <i data-lucide="gamepad-2" class="text-rose-400"></i> Игра: Ловец Улыбок
+                    </h2>
+                    <p class="text-xs text-gray-500">Лови падающие сердечки и звёздочки, чтобы разблокировать сюрпризы!</p>
+                </div>
+                <div class="bg-rose-100 px-4 py-1.5 rounded-full text-rose-600 font-bold text-sm">
+                    Очки: <span id="gameScore">0</span> / <span id="targetScore">15</span>
+                </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="relative w-full h-64 bg-gradient-to-b from-rose-50 to-peach-100 rounded-2xl overflow-hidden border-2 border-rose-200 shadow-inner mb-4">
+                <canvas id="gameCanvas" class="w-full h-full block cursor-pointer"></canvas>
+                
+                <!-- Game Start Overlay -->
+                <div id="gameStartOverlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center p-4">
+                    <p class="text-rose-600 font-bold mb-3 text-sm sm:text-base">Кликай по сердечкам и звездочкам!</p>
+                    <button onclick="startGame()" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition transform hover:scale-105">
+                        Начать игру 🎮
+                    </button>
+                </div>
+            </div>
+
+            <!-- Secret Reward Modal Display -->
+            <div id="gameRewardBox" class="hidden bg-white/90 p-4 rounded-2xl border-2 border-rose-300 animate-fade-in text-center space-y-3">
+                <span class="text-3xl">🎉🎉🎉</span>
+                <h3 class="font-bold text-rose-500 text-lg">Ты супер-ловкая! Сюприз открыт!</h3>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZxbWVvZHFxYmlwcXF6Znd5eXR2ejM3Ymt2eG1qZnFlZzRrcmJ3NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Surprise Gif" class="w-40 h-40 object-cover mx-auto rounded-xl shadow">
+                <p class="text-xs sm:text-sm text-gray-600 italic">"Каждая пойманая звездочка — это одно моё желание обнять тебя прямо сейчас!"</p>
+                <button onclick="resetGame()" class="text-xs text-rose-400 underline hover:text-rose-600">Сыграть ещё раз</button>
+            </div>
+        </section>
+
+        <!-- MEMORIES & STORIES GALLERY -->
+        <section class="glass-card rounded-3xl p-6">
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-bold text-rose-500 mb-1 flex items-center justify-center gap-2">
+                    <i data-lucide="image" class="text-rose-400"></i> Галерея Наших Воспоминаний
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-500">Карточки со сними и историями, которые греют душу</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Dynamic Gallery Cards from JS -->
+            </div>
+        </section>
+
+        <!-- SELF CARE CHECKLIST -->
+        <section class="glass-card rounded-3xl p-6">
+            <h2 class="text-xl font-bold text-rose-500 mb-2 flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="text-rose-400"></i> Чек-лист заботы о себе на сегодня
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-500 mb-4">Пообещай мне выполнить хотя бы пару пунктов! 🥰</p>
+
+            <div class="space-y-2" id="checklistContainer">
+                <!-- Dynamic Checkbox Items -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SOS URGENT COMFORT MODAL -->
+    <div id="sosModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-white/95 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center relative border-4 border-rose-300 shadow-2xl animate-bounce-in">
+            <button onclick="closeSosModal()" class="absolute top-4 right-4 text-gray-400 hover:text-rose-500 p-1">
+                <i data-lucide="x"></i>
+            </button>
+
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRraXZscHZ0OHVsYXByOTZmeDZ0MXA1aXFlZXkzbGszdHpxeXVqeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PHZ7v9tfQu0o0/giphy.gif" 
+                 alt="Warm Hug" class="w-36 h-36 mx-auto rounded-2xl mb-4 object-cover shadow-md">
+
+            <h3 class="text-2xl font-bold text-rose-500 mb-2 font-rounded">Срочные Обнимашки! 💖</h3>
+            
+            <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                Сделай глубокий вдох. Выдохни. <br>
+                Представь, что я прямо сейчас рядом, крепко-крепко обнимаю тебя, уткнувшись носом в твои волосы. Всё обязательно будет хорошо! Ты справишься со всем, а я всегда на твоей стороне.
+            </p>
+
+            <button onclick="closeSosModal()" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 rounded-full shadow-lg transition">
+                Спасибо, мне стало чуточку теплее 🥰
+            </button>
         </div>
     </div>
 
     <script>
-        const playlists = {
-            sad: {
-                title: "🌧 Когда грустно и хочется тепла",
-                songs: [
-                    { title: "Расстояние", artist: "Ulukmanapo, Bakr", type: "her" },
-                    { title: "Возьми сердце моё", artist: "Канги", type: "her" },
-                    { title: "Аллея", artist: "JONY", type: "her" },
-                    { title: "Sheker", artist: "Darkhan Juzz", type: "his" },
-                    { title: "Ищу тебя", artist: "Bonapart", type: "his" }
-                ]
-            },
-            miss: {
-                title: "🧸 Когда скучаешь по нам",
-                songs: [
-                    { title: "I Got Love", artist: "MiyaGi & Эндшпиль", type: "her" },
-                    { title: "С любовью", artist: "CAPTOWN", type: "her" },
-                    { title: "Люби меня долго", artist: "Ирина Дубцова", type: "her" },
-                    { title: "Жаным-ау, сен", artist: "RaiM", type: "his" },
-                    { title: "Kuiim", artist: "ALEM", type: "his" }
-                ]
-            },
-            energy: {
-                title: "✨ Для вдохновения и энергии",
-                songs: [
-                    { title: "Улыбайся", artist: "IOWA", type: "her" },
-                    { title: "On Top Of The World", artist: "Imagine Dragons", type: "her" },
-                    { title: "Shut Up and Dance", artist: "WALK THE MOON", type: "her" },
-                    { title: "ВСЕМ САЛАМ!", artist: "Ирина Кайратовна", type: "his" },
-                    { title: "ALA Basqa", artist: "Shiza", type: "his" }
-                ]
-            }
-        };
+        /* ==========================================
+           CONFIGURABLE DATA STRUCTURE
+           (Здесь парень легко может менять тексты и ссылки на фото)
+           ========================================== */
 
-        const compliments = [
-            "Ты самая умная и невероятная! Учёба покорится тебе 🌟",
-            "Моя любовь к тебе сильнее любого расстояния 💖",
-            "Сделай паузу, выпей тёплого чая и улыбнись ☕",
-            "Ты справляешься отлично, я горжусь тобой! 👏",
-            "Скоро мы снова будем вместе и обнимемся по-настоящему! ✈️❤️"
+        // 1. Комплименты и поддержка для "Генератора Обнимашек"
+        const COMPLIMENTS = [
+            "Ты самая невероятная и умная девушка на свете! ✨",
+            "Британия даже не представляла, насколько ей повезло встретить тебя! 🇬🇧❤️",
+            "Я горжусь каждым твоим шагом и успехом!",
+            "Отправляю тебе виртуальный поцелуй прямо в щёчку! 💋",
+            "Завари себе вкусный чай, сделай паузу — ты отлично справляешься!",
+            "Твоя улыбка освещает весь мой мир даже через километры 🌍✨",
+            "Помни: ты сильная, способная и всё у тебя получится!",
+            "Крепко-крепко обнимаю тебя и никому не отдаю! 🧸"
         ];
 
-        function switchTab(tabKey) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        // 2. Этапы для "Карты Воспоминаний / Квеста"
+        const QUEST_STEPS = [
+            {
+                title: "День, когда мы познакомились ✨",
+                desc: "Тот самый день, который изменил всё. Я сразу понял, что ты особенная.",
+                secretMsg: "Записка: Помнишь, как мы волновались? Это было лучшее начало нашей истории!",
+                icon: "sparkles"
+            },
+            {
+                title: "Наше первое особенное свидание ☕",
+                desc: "Много смеха, длинные разговоры и ощущение, что мы знаем друг друга всю жизнь.",
+                secretMsg: "Записка: Я до сих пор помню твои глаза и твой прекрасный смех в тот вечер.",
+                icon: "coffee"
+            },
+            {
+                title: "Твой отлёт в Великобританию ✈️",
+                desc: "Сложный момент прощания в аэропорту, но начало твоей невероятной цели!",
+                secretMsg: "Записка: Расстояние — это лишь цифры. Моя любовь к тебе летит сквозь любые океаны!",
+                icon: "plane"
+            },
+            {
+                title: "Наша будущая встреча! 🎆",
+                desc: "Скоро мы снова обнимемся и не будем отпускать друг друга очень долго.",
+                secretMsg: "Записка: Я уже считаю дни до момента, когда смогу забрать тебя из аэропорта!",
+                icon: "heart"
+            }
+        ];
 
-            const data = playlists[tabKey];
-            let html = `<h4 style="margin-bottom:10px; color:var(--deep-pink);">${data.title}</h4>`;
+        // 3. Галерея воспоминаний (Замените URL картинки и тексты на свои!)
+        const GALLERY_ITEMS = [
+            {
+                title: "Наши прогулки",
+                date: "Архив теплых дней",
+                desc: "Как же с тобой тепло и здорово просто гулять за руку.",
+                img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                title: "Уютные вечера",
+                date: "Незабываемые моменты",
+                desc: "Фильмы, вкусняшки и самые искренние разговоры обо всём на свете.",
+                img: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                title: "Твоя улыбка",
+                date: "Мой любимый кадр",
+                desc: "Когда ты улыбаешься — мир вокруг становится ярче!",
+                img: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                title: "Впереди целая жизнь",
+                date: "Наше будущее",
+                desc: "Столько всего интересного нас ещё ждёт впереди!",
+                img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
 
-            data.songs.forEach(song => {
-                const badgeText = song.type === 'her' ? 'Её трек' : 'Его трек';
-                const badgeClass = song.type === 'her' ? 'badge-her' : 'badge-his';
-                
-                html += `
-                    <div class="song-item">
-                        <div class="song-info">
-                            <span class="song-title">${song.title}</span>
-                            <span class="song-artist">${song.artist}</span>
+        // 4. Чек-лист заботы
+        const CHECKLIST_ITEMS = [
+            "Выпить чашку тёплого чая или какао ☕",
+            "Надеть самые уютные и тёплые носочки 🧦",
+            "Похвалить себя за сделанную учёбу 📚",
+            "Улыбнуться себе в зеркало и сказать 'Я умничка' 😊",
+            "Крепко обнять мягкую игрушку/подушку 🧸"
+        ];
+
+        /* ==========================================
+           AUDIO SYSTEM (Web Audio API Synthesizer)
+           Создаёт уютные эмбиент-звуки без внешних файлов
+           ========================================== */
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let currentNoiseNode = null;
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function toggleAudio() {
+            initAudioContext();
+            const btnText = document.getElementById('audioStatusText');
+            const icon = document.getElementById('volumeIcon');
+
+            if (isAudioPlaying) {
+                stopAmbientSound();
+                isAudioPlaying = false;
+                btnText.textContent = "Атмосфера: Выкл";
+                icon.setAttribute('data-lucide', 'volume-x');
+            } else {
+                startAmbientSound(document.getElementById('soundSelect').value);
+                isAudioPlaying = true;
+                btnText.textContent = "Атмосфера: Вкл 🎶";
+                icon.setAttribute('data-lucide', 'volume-2');
+            }
+            lucide.createIcons();
+        }
+
+        function changeSoundTrack(type) {
+            if (isAudioPlaying) {
+                stopAmbientSound();
+                startAmbientSound(type);
+            }
+        }
+
+        function startAmbientSound(type) {
+            if (!audioCtx) return;
+            
+            // Генерация синтетического шума для атмосферы (дождь/камин)
+            const bufferSize = audioCtx.sampleRate * 2;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = buffer.getChannelData(0);
+            
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+
+            const whiteNoise = audioCtx.createBufferSource();
+            whiteNoise.buffer = buffer;
+            whiteNoise.loop = true;
+
+            const filter = audioCtx.createBiquadFilter();
+            
+            if (type === 'rain') {
+                filter.type = 'lowpass';
+                filter.frequency.value = 800;
+            } else if (type === 'fireplace') {
+                filter.type = 'bandpass';
+                filter.frequency.value = 400;
+            } else { // cafe
+                filter.type = 'lowpass';
+                filter.frequency.value = 1200;
+            }
+
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.value = 0.05; // Тихий фоновый звук
+
+            whiteNoise.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            whiteNoise.start();
+            currentNoiseNode = whiteNoise;
+        }
+
+        function stopAmbientSound() {
+            if (currentNoiseNode) {
+                try {
+                    currentNoiseNode.stop();
+                    currentNoiseNode.disconnect();
+                } catch(e) {}
+                currentNoiseNode = null;
+            }
+        }
+
+        /* ==========================================
+           PLAYLIST SUGGESTIONS
+           ========================================== */
+        function showMoodPlaylist(mood) {
+            const box = document.getElementById('playlistDisplayBox');
+            const title = document.getElementById('playlistTitle');
+            const desc = document.getElementById('playlistDesc');
+            const list = document.getElementById('songList');
+
+            box.classList.remove('hidden');
+            list.innerHTML = '';
+
+            if (mood === 'sad') {
+                title.textContent = "🌧️ Плейлист: Когда грустно и хочется тепла";
+                desc.textContent = "Включи эти песни, укутайся в плед и помни, что я рядом:";
+                ['Coldplay - Yellow', 'Ed Sheeran - Perfect', 'Taylor Swift - Lover', 'Денис RiDer - Обещаю'].forEach(song => {
+                    list.innerHTML += `<li>${song}</li>`;
+                });
+            } else if (mood === 'miss') {
+                title.textContent = "🧸 Плейлист: Когда сильно скучаешь";
+                desc.textContent = "Музыка, которая напомнит о наших лучших моментах:";
+                ['LANY - I LYSB', 'The 1975 - About You', 'Lauv - I Like Me Better', 'Макс Корж - Горы по колено'].forEach(song => {
+                    list.innerHTML += `<li>${song}</li>`;
+                });
+            } else if (mood === 'inspire') {
+                title.textContent = "✨ Плейлист: Для учёбы и вдохновения";
+                desc.textContent = "Заряжаемся энергией для покорения Великобритании:";
+                ['Lofi Girl - Peaceful Beats', 'Dua Lipa - Levitating', 'Coldplay - A Head Full of Dreams', 'Imagine Dragons - On Top Of The World'].forEach(song => {
+                    list.innerHTML += `<li>${song}</li>`;
+                });
+            }
+        }
+
+        /* ==========================================
+           COMPLIMENT GENERATOR
+           ========================================== */
+        function generateCompliment() {
+            const textEl = document.getElementById('complimentText');
+            const randomIndex = Math.floor(Math.random() * COMPLIMENTS.length);
+            
+            textEl.style.opacity = 0;
+            setTimeout(() => {
+                textEl.textContent = `"${COMPLIMENTS[randomIndex]}"`;
+                textEl.style.opacity = 1;
+            }, 200);
+
+            // Trigger light confetti
+            confetti({
+                particleCount: 25,
+                spread: 60,
+                origin: { y: 0.7 },
+                colors: ['#FFA0B2', '#FF6B8B', '#FFC6D0']
+            });
+        }
+
+        /* ==========================================
+           QUEST STEPPER RENDER
+           ========================================== */
+        function renderQuest() {
+            const container = document.getElementById('questStepsContainer');
+            container.innerHTML = '';
+
+            QUEST_STEPS.forEach((step, idx) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = 'bg-white/80 rounded-2xl p-4 border border-rose-100 transition shadow-sm hover:shadow-md';
+                stepEl.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="bg-rose-100 text-rose-500 p-2.5 rounded-xl font-bold flex items-center justify-center min-w-[40px]">
+                            ${idx + 1}
                         </div>
-                        <span class="badge ${badgeClass}">${badgeText}</span>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-gray-800 text-base mb-1 flex items-center gap-2">
+                                ${step.title}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-600 mb-3">${step.desc}</p>
+                            
+                            <button onclick="toggleQuestSecret(${idx})" class="text-xs font-bold text-rose-500 hover:text-rose-600 flex items-center gap-1 bg-rose-50 px-3 py-1.5 rounded-full border border-rose-200">
+                                <i data-lucide="lock" id="lockIcon-${idx}"></i> Открыть записку
+                            </button>
+
+                            <div id="questSecret-${idx}" class="hidden mt-3 p-3 bg-rose-50/80 rounded-xl border border-rose-200 text-xs sm:text-sm text-rose-700 font-semibold italic">
+                                ${step.secretMsg}
+                            </div>
+                        </div>
                     </div>
                 `;
+                container.appendChild(stepEl);
             });
-
-            document.getElementById('playlist-container').innerHTML = html;
+            lucide.createIcons();
         }
 
-        function triggerHug() {
-            document.getElementById('hug-modal').classList.remove('hidden');
+        function toggleQuestSecret(idx) {
+            const secretBox = document.getElementById(`questSecret-${idx}`);
+            const lockIcon = document.getElementById(`lockIcon-${idx}`);
+            if (secretBox.classList.contains('hidden')) {
+                secretBox.classList.remove('hidden');
+                lockIcon.setAttribute('data-lucide', 'unlock');
+                confetti({ particleCount: 15, spread: 40, origin: { y: 0.8 } });
+            } else {
+                secretBox.classList.add('hidden');
+                lockIcon.setAttribute('data-lucide', 'lock');
+            }
+            lucide.createIcons();
         }
 
-        function closeModal() {
-            document.getElementById('hug-modal').classList.add('hidden');
+        /* ==========================================
+           GALLERY RENDER
+           ========================================== */
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            GALLERY_ITEMS.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col';
+                card.innerHTML = `
+                    <div class="relative h-44 w-full rounded-xl overflow-hidden mb-3">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
+                        <span class="absolute bottom-2 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
+                            ${item.date}
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-base mb-1">${item.title}</h3>
+                    <p class="text-xs text-gray-600 flex-1">${item.desc}</p>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        function nextCompliment() {
-            const random = compliments[Math.floor(Math.random() * compliments.length)];
-            document.getElementById('compliment-text').innerText = random;
+        /* ==========================================
+           CHECKLIST RENDER
+           ========================================== */
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+
+            CHECKLIST_ITEMS.forEach((item, idx) => {
+                const div = document.createElement('label');
+                div.className = 'flex items-center gap-3 p-3 bg-white/70 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-50/50 transition';
+                div.innerHTML = `
+                    <input type="checkbox" onchange="handleChecklist(this)" class="w-5 h-5 accent-rose-500 rounded cursor-pointer">
+                    <span class="text-xs sm:text-sm text-gray-700 font-medium">${item}</span>
+                `;
+                container.appendChild(div);
+            });
         }
 
-        // Инициализация при загрузке
-        switchTab('sad');
+        function handleChecklist(checkbox) {
+            const textSpan = checkbox.nextElementSibling;
+            if (checkbox.checked) {
+                textSpan.classList.add('line-through', 'text-gray-400');
+                confetti({ particleCount: 20, spread: 50 });
+            } else {
+                textSpan.classList.remove('line-through', 'text-gray-400');
+            }
+        }
+
+        /* ==========================================
+           CATCH SMILES MINI-GAME
+           ========================================== */
+        let canvas, ctx;
+        let score = 0;
+        const targetScore = 15;
+        let gameItems = [];
+        let isGameRunning = false;
+        let animationFrameId;
+
+        function initGame() {
+            canvas = document.getElementById('gameCanvas');
+            ctx = canvas.getContext('2d');
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            canvas.addEventListener('click', handleCanvasClick);
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                handleCanvasClick({ clientX: touch.clientX, clientY: touch.clientY });
+            });
+        }
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+
+        function startGame() {
+            document.getElementById('gameStartOverlay').classList.add('hidden');
+            document.getElementById('gameRewardBox').classList.add('hidden');
+            score = 0;
+            document.getElementById('gameScore').textContent = score;
+            gameItems = [];
+            isGameRunning = true;
+            animateGame();
+        }
+
+        function resetGame() {
+            startGame();
+        }
+
+        function spawnGameItem() {
+            if (Math.random() < 0.04) {
+                const types = ['💖', '⭐', '🌸', '✨'];
+                gameItems.push({
+                    x: Math.random() * (canvas.width - 40) + 20,
+                    y: -20,
+                    speed: Math.random() * 1.5 + 1,
+                    symbol: types[Math.floor(Math.random() * types.length)],
+                    size: 28
+                });
+            }
+        }
+
+        function animateGame() {
+            if (!isGameRunning) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            spawnGameItem();
+
+            for (let i = gameItems.length - 1; i >= 0; i--) {
+                const item = gameItems[i];
+                item.y += item.speed;
+
+                ctx.font = `${item.size}px sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.fillText(item.symbol, item.x, item.y);
+
+                // Remove out of screen items
+                if (item.y > canvas.height + 30) {
+                    gameItems.splice(i, 1);
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(animateGame);
+        }
+
+        function handleCanvasClick(e) {
+            if (!isGameRunning) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+
+            for (let i = gameItems.length - 1; i >= 0; i--) {
+                const item = gameItems[i];
+                const dist = Math.hypot(clickX - item.x, clickY - item.y);
+
+                if (dist < item.size) {
+                    gameItems.splice(i, 1);
+                    score++;
+                    document.getElementById('gameScore').textContent = score;
+
+                    if (score >= targetScore) {
+                        endGameSuccess();
+                    }
+                    break;
+                }
+            }
+        }
+
+        function endGameSuccess() {
+            isGameRunning = false;
+            cancelAnimationFrame(animationFrameId);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('gameRewardBox').classList.remove('hidden');
+            confetti({ particleCount: 80, spread: 90, origin: { y: 0.6 } });
+        }
+
+        /* ==========================================
+           BACKGROUND FLOATING PARTICLES
+           ========================================== */
+        function createFloatingParticles() {
+            const container = document.getElementById('particlesContainer');
+            const symbols = ['💖', '✨', '🌸', '☁️', '⭐'];
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'bg-particle';
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.fontSize = `${Math.random() * 14 + 14}px`;
+                container.appendChild(particle);
+            }
+        }
+
+        /* ==========================================
+           MODALS & NAVIGATION
+           ========================================== */
+        function openSosModal() {
+            document.getElementById('sosModal').classList.remove('hidden');
+            confetti({ particleCount: 40, spread: 70, origin: { y: 0.5 } });
+        }
+
+        function closeSosModal() {
+            document.getElementById('sosModal').classList.add('hidden');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* ==========================================
+           ON LOAD INITIALIZATION
+           ========================================== */
+        window.onload = function() {
+            lucide.createIcons();
+            createFloatingParticles();
+            renderQuest();
+            renderGallery();
+            renderChecklist();
+            initGame();
+        };
     </script>
 </body>
 </html>
