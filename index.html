@@ -660,44 +660,6 @@
         }
 
         /* ==========================================
-       GALLERY RENDER
-       ========================================== */
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
-            grid.innerHTML = '';
-        
-            GALLERY_ITEMS.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col';
-                card.innerHTML = `
-                    <div class="relative h-44 w-full rounded-xl overflow-hidden mb-3">
-                        <img src="${item.img}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover">
-                        <span class="absolute bottom-2 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
-                            ${item.date}
-                        </span>
-                    </div>
-                    <h3 class="font-bold text-gray-800 text-base mb-1">${item.title}</h3>
-                    <p class="text-xs text-gray-600 flex-1">${item.desc}</p>
-                `;
-                grid.appendChild(card);
-            });
-        }
-        
-        function toggleQuestSecret(idx) {
-            const secretBox = document.getElementById(`questSecret-${idx}`);
-            const lockIcon = document.getElementById(`lockIcon-${idx}`);
-            if (secretBox.classList.contains('hidden')) {
-                secretBox.classList.remove('hidden');
-                lockIcon.setAttribute('data-lucide', 'unlock');
-                confetti({ particleCount: 15, spread: 40, origin: { y: 0.8 } });
-            } else {
-                secretBox.classList.add('hidden');
-                lockIcon.setAttribute('data-lucide', 'lock');
-            }
-            lucide.createIcons();
-        }
-
-        /* ==========================================
            GALLERY RENDER
            ========================================== */
         function renderGallery() {
