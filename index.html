@@ -185,24 +185,24 @@
             <h2 class="text-xl font-bold text-rose-500 mb-4 flex items-center gap-2">
                 <i data-lucide="music" class="text-rose-400"></i> Плейлист настроения
             </h2>
-            <p class="text-xs sm:text-sm text-gray-500 mb-4">Выбери, что ты чувствуешь прямо сейчас, и послушай рекомендации от меня:</p>
+            <p class="text-xs sm:text-sm text-gray-500 mb-4">Нажми на эмоцию, чтобы открыть треки:</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <button onclick="showMoodPlaylist('sad')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group">
+                <button onclick="showMoodPlaylist('sad')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
                     <span class="text-2xl group-hover:scale-125 transition">🌧️</span>
                     <div>
                         <div class="font-bold text-sm text-gray-700">Когда грустно</div>
                         <div class="text-xs text-gray-400">Тёплые слова и уют</div>
                     </div>
                 </button>
-                <button onclick="showMoodPlaylist('miss')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group">
+                <button onclick="showMoodPlaylist('miss')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
                     <span class="text-2xl group-hover:scale-125 transition">🧸</span>
                     <div>
                         <div class="font-bold text-sm text-gray-700">Когда скучаешь</div>
                         <div class="text-xs text-gray-400">Вспомни наши моменты</div>
                     </div>
                 </button>
-                <button onclick="showMoodPlaylist('inspire')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group">
+                <button onclick="showMoodPlaylist('inspire')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
                     <span class="text-2xl group-hover:scale-125 transition">✨</span>
                     <div>
                         <div class="font-bold text-sm text-gray-700">Для вдохновения</div>
@@ -210,9 +210,9 @@
                     </div>
                 </button>
             </div>
-
+        
             <div id="playlistDisplayBox" class="mt-4 p-4 rounded-2xl bg-rose-50/60 border border-rose-200 hidden">
-                <h3 id="playlistTitle" class="font-bold text-rose-600 text-sm mb-2"></h3>
+                <h3 id="playlistTitle" class="font-bold text-rose-600 text-sm mb-1"></h3>
                 <p id="playlistDesc" class="text-xs sm:text-sm text-gray-600 mb-3"></p>
                 <ul id="songList" class="space-y-2 text-xs sm:text-sm text-gray-700 font-semibold"></ul>
             </div>
@@ -591,33 +591,33 @@
         
             if (mood === 'sad') {
                 title.textContent = "🌧️ Плейлист: Когда грустно и хочется тепла";
-                desc.textContent = "Включи эти песни, укутайся в плед и помни, что я рядом:";
+                desc.textContent = "Нажми на любой трек, чтобы послушать его в Spotify:";
                 songs = [
-                    { name: "JONY — Комета", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/JONY%20%D0%9A%D0%BE%D0%BC%D0%B5%D1%82%D0%B0" },
-                    { name: "Канги — Возьми сердце моё", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/%D0%9A%D0%B0%D0%BD%D0%B3%D0%B8%20%D0%92%D0%BE%D0%B7%D1%8C%D0%BC%D0%B8%20%D1%81%D0%B5%D1%80%D0%B4%D1%86%D0%B5%20%D0%BC%D0%BE%D1%91" },
-                    { name: "JONY — Аллея", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/JONY%20%D0%90%D0%BB%D0%BB%D0%B5%D1%8F" },
-                    { name: "Darkhan Juzz — Sheker", tag: "Моя музыка", color: "bg-sky-100 text-sky-600", url: "https://open.spotify.com/search/Darkhan%20Juzz%20Sheker" },
-                    { name: "Bonapart — Ищу тебя", tag: "Моя музыка", color: "bg-sky-100 text-sky-600", url: "https://open.spotify.com/search/Bonapart%20%D0%98%D1%89%D1%83%20%D1%82%D0%B5%D0%B1%D1%8F" }
+                    { name: "JONY — Комета", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/JONY%20%D0%9A%D0%BE%D0%BC%D0%B5%D1%82%D0%B0" },
+                    { name: "Канги — Возьми сердце моё", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/%D0%9A%D0%B0%D0%BD%D0%B3%D0%B8%20%D0%92%D0%BE%D0%B7%D1%8C%D0%BC%D0%B8%20%D1%81%D0%B5%D1%80%D0%B4%D1%86%D0%B5%20%D0%BC%D0%BE%D1%91" },
+                    { name: "JONY — Аллея", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/JONY%20%D0%90%D0%BB%D0%BB%D0%B5%D1%8F" },
+                    { name: "Darkhan Juzz — Sheker", tag: "Моя музыка", color: "bg-sky-100 text-sky-600 border-sky-200", url: "https://open.spotify.com/search/Darkhan%20Juzz%20Sheker" },
+                    { name: "Bonapart — Ищу тебя", tag: "Моя музыка", color: "bg-sky-100 text-sky-600 border-sky-200", url: "https://open.spotify.com/search/Bonapart%20%D0%98%D1%89%D1%83%20%D1%82%D0%B5%D0%B1%D1%8F" }
                 ];
             } else if (mood === 'miss') {
                 title.textContent = "🧸 Плейлист: Когда сильно скучаешь";
-                desc.textContent = "Музыка, которая напомнит о наших лучших моментах:";
+                desc.textContent = "Нажми на любой трек, чтобы послушать его в Spotify:";
                 songs = [
-                    { name: "MiyaGi & Эндшпиль — I Got Love", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/MiyaGi%20%D0%AD%D0%BD%D0%B4%D1%88%D0%BF%D0%B8%D0%BB%D1%8C%20I%20Got%20Love" },
-                    { name: "CAPTOWN — С любовью", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/CAPTOWN%20%D0%A1%20%D0%BB%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C%D1%8E" },
-                    { name: "Ирина Дубцова — Люби меня долго", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/%D0%98%D1%80%D0%B8%D0%BD%D0%B0%20%D0%94%D1%83%D0%B1%D1%86%D0%BE%D0%B2%D0%B0%20%D0%9B%D1%8E%D0%B1%D0%B8%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B4%D0%BE%D0%BB%D0%B3%D0%BE" },
-                    { name: "RaiM — Жаным-ау, сен", tag: "Моя музыка", color: "bg-sky-100 text-sky-600", url: "https://open.spotify.com/search/RaiM%20%D0%96%D0%B0%D0%BD%D1%8B%D0%BC-%D0%B0%D1%83%20%D1%81%D0%B5%D0%BD" },
-                    { name: "ALEM — Kuiim", tag: "Моя музыка", color: "bg-sky-100 text-sky-600", url: "https://open.spotify.com/search/ALEM%20Kuiim" }
+                    { name: "MiyaGi & Эндшпиль — I Got Love", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/MiyaGi%20%D0%AD%D0%BD%D0%B4%D1%88%D0%BF%D0%B8%D0%BB%D1%8C%20I%20Got%20Love" },
+                    { name: "CAPTOWN — С любовью", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/CAPTOWN%20%D0%A1%20%D0%BB%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C%D1%8E" },
+                    { name: "Ирина Дубцова — Люби меня долго", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/%D0%98%D1%80%D0%B8%D0%BD%D0%B0%20%D0%94%D1%83%D0%B1%D1%86%D0%BE%D0%B2%D0%B0%20%D0%9B%D1%8E%D0%B1%D0%B8%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B4%D0%BE%D0%BB%D0%B3%D0%BE" },
+                    { name: "RaiM — Жаным-ау, сен", tag: "Моя музыка", color: "bg-sky-100 text-sky-600 border-sky-200", url: "https://open.spotify.com/search/RaiM%20%D0%96%D0%B0%D0%BD%D1%8B%D0%BC-%D0%B0%D1%83%20%D1%81%D0%B5%D1%80" },
+                    { name: "ALEM — Kuiim", tag: "Моя музыка", color: "bg-sky-100 text-sky-600 border-sky-200", url: "https://open.spotify.com/search/ALEM%20Kuiim" }
                 ];
             } else if (mood === 'inspire') {
                 title.textContent = "✨ Плейлист: Для учёбы и вдохновения";
-                desc.textContent = "Заряжаемся энергией для покорения Великобритании:";
+                desc.textContent = "Нажми на любой трек, чтобы послушать его в Spotify:";
                 songs = [
-                    { name: "IOWA — Улыбайся", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/IOWA%20%D0%A3%D0%BB%D1%8B%D0%B1%D0%B0%D0%B9%D1%81%D1%8F" },
-                    { name: "Imagine Dragons — On Top Of The World", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/Imagine%20Dragons%20On%20Top%20Of%20The%20World" },
-                    { name: "WALK THE MOON — Shut Up and Dance", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600", url: "https://open.spotify.com/search/WALK%20THE%20MOON%20Shut%20Up%20and%20Dance" },
-                    { name: "Ирина Кайратовна — ВСЕМ САЛАМ!", tag: "Моя музыка", color: "bg-sky-100 text-sky-600", url: "https://open.spotify.com/search/%D0%98%D1%80%D0%B8%D0%BD%D0%B0%20%D0%9A%D0%B0%D0%B9%D1%80%D0%B0%D1%82%D0%BE%D0%B2%D0%BD%D0%B0%20%D0%92%D0%A1%D0%B5%D0%9C%20%D0%A1%D0%90%D0%9B%D0%90%D0%9C" },
-                    { name: "Shiza — ALA Basqa", tag: "Моя музыка", color: "bg-sky-100 text-sky-600", url: "https://open.spotify.com/search/Shiza%20ALA%20Basqa" }
+                    { name: "IOWA — Улыбайся", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/IOWA%20%D0%A3%D0%BB%D1%8B%D0%B1%D0%B0%D0%B9%D1%81%D1%8F" },
+                    { name: "Imagine Dragons — On Top Of The World", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/Imagine%20Dragons%20On%20Top%20Of%20The%20World" },
+                    { name: "WALK THE MOON — Shut Up and Dance", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600 border-rose-200", url: "https://open.spotify.com/search/WALK%20THE%20MOON%20Shut%20Up%20and%20Dance" },
+                    { name: "Ирина Кайратовна — ВСЕМ САЛАМ!", tag: "Моя музыка", color: "bg-sky-100 text-sky-600 border-sky-200", url: "https://open.spotify.com/search/%D0%98%D1%80%D0%B8%D0%BD%D0%B0%20%D0%9A%D0%B0%D0%B9%D1%80%D0%B0%D1%82%D0%BE%D0%B2%D0%BD%D0%B0%20%D0%92%D0%A1%D0%B5%D0%9C%20%D0%A1%D0%90%D0%9B%D0%90%D0%9C" },
+                    { name: "Shiza — ALA Basqa", tag: "Моя музыка", color: "bg-sky-100 text-sky-600 border-sky-200", url: "https://open.spotify.com/search/Shiza%20ALA%20Basqa" }
                 ];
             }
         
@@ -625,9 +625,15 @@
                 list.innerHTML += `
                     <li>
                         <a href="${song.url}" target="_blank" rel="noopener noreferrer" 
-                           class="flex items-center justify-between bg-white/80 hover:bg-white p-2.5 rounded-xl border border-rose-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer group">
-                            <span class="group-hover:text-rose-600 transition-colors">🎵 ${song.name}</span>
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${song.color}">${song.tag}</span>
+                           class="flex items-center justify-between bg-white/80 hover:bg-white p-3 rounded-xl border border-rose-100 transition-all hover:scale-[1.01] hover:shadow-md active:scale-[0.99] cursor-pointer group">
+                            <div class="flex items-center gap-2 overflow-hidden">
+                                <span class="text-rose-500 group-hover:scale-110 transition-transform">🎧</span>
+                                <span class="group-hover:text-rose-600 transition-colors truncate">🎵 ${song.name}</span>
+                            </div>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${song.color}">${song.tag}</span>
+                                <span class="text-xs text-rose-400 group-hover:translate-x-0.5 transition-transform">▶</span>
+                            </div>
                         </a>
                     </li>`;
             });
