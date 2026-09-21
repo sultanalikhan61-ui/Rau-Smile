@@ -500,44 +500,44 @@
             const title = document.getElementById('playlistTitle');
             const desc = document.getElementById('playlistDesc');
             const list = document.getElementById('songList');
-
+        
             box.classList.remove('hidden');
             list.innerHTML = '';
-
+        
             let songs = [];
-
+        
             if (mood === 'sad') {
                 title.textContent = "🌧️ Плейлист: Когда грустно и хочется тепла";
                 desc.textContent = "Включи эти песни, укутайся в плед и помни, что я рядом:";
                 songs = [
-                    { name: "Ulukmanapo, Bakr — Расстояние", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "Канги — Возьми сердце моё", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "JONY — Аллея", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "Darkhan Juzz — Sheker", tag: "Твой трек", color: "bg-sky-100 text-sky-600" },
-                    { name: "Bonapart — Ищу тебя", tag: "Твой трек", color: "bg-sky-100 text-sky-600" }
+                    { name: "Ulukmanapo, Bakr — Расстояние", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "Канги — Возьми сердце моё", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "JONY — Аллея", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "Darkhan Juzz — Sheker", tag: "Моя музыка", color: "bg-sky-100 text-sky-600" },
+                    { name: "Bonapart — Ищу тебя", tag: "Моя музыка", color: "bg-sky-100 text-sky-600" }
                 ];
             } else if (mood === 'miss') {
                 title.textContent = "🧸 Плейлист: Когда сильно скучаешь";
                 desc.textContent = "Музыка, которая напомнит о наших лучших моментах:";
                 songs = [
-                    { name: "MiyaGi & Эндшпиль — I Got Love", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "CAPTOWN — С любовью", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "Ирина Дубцова — Люби меня долго", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "RaiM — Жаным-ау, сен", tag: "Твой трек", color: "bg-sky-100 text-sky-600" },
-                    { name: "ALEM — Kuiim", tag: "Твой трек", color: "bg-sky-100 text-sky-600" }
+                    { name: "MiyaGi & Эндшпиль — I Got Love", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "CAPTOWN — С любовью", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "Ирина Дубцова — Люби меня долго", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "RaiM — Жаным-ау, сен", tag: "Моя музыка", color: "bg-sky-100 text-sky-600" },
+                    { name: "ALEM — Kuiim", tag: "Моя музыка", color: "bg-sky-100 text-sky-600" }
                 ];
             } else if (mood === 'inspire') {
                 title.textContent = "✨ Плейлист: Для учёбы и вдохновения";
                 desc.textContent = "Заряжаемся энергией для покорения Великобритании:";
                 songs = [
-                    { name: "IOWA — Улыбайся", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "Imagine Dragons — On Top Of The World", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "WALK THE MOON — Shut Up and Dance", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
-                    { name: "Ирина Кайратовна — ВСЕМ САЛАМ!", tag: "Твой трек", color: "bg-sky-100 text-sky-600" },
-                    { name: "Shiza — ALA Basqa", tag: "Твой трек", color: "bg-sky-100 text-sky-600" }
+                    { name: "IOWA — Улыбайся", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "Imagine Dragons — On Top Of The World", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "WALK THE MOON — Shut Up and Dance", tag: "Твоя музыка", color: "bg-rose-100 text-rose-600" },
+                    { name: "Ирина Кайратовна — ВСЕМ САЛАМ!", tag: "Моя музыка", color: "bg-sky-100 text-sky-600" },
+                    { name: "Shiza — ALA Basqa", tag: "Моя музыка", color: "bg-sky-100 text-sky-600" }
                 ];
             }
-
+        
             songs.forEach(song => {
                 list.innerHTML += `
                     <li class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-rose-100">
