@@ -561,4 +561,138 @@
             }, 200);
 
             confetti({
-                particleCount: 25
+                particleCount: 25,
+                spread: 60,
+                origin: { y: 0.7 },
+                colors: ['#FFA0B2', '#FF6B8B', '#FFC6D0']
+            });
+        }
+
+        /* ==========================================
+           QUEST RENDER
+           ========================================== */
+        function renderQuest() {
+            const container = document.getElementById('questStepsContainer');
+            container.innerHTML = '';
+
+            QUEST_STEPS.forEach((step, idx) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = 'bg-white/80 rounded-2xl p-4 border border-rose-100 transition shadow-sm hover:shadow-md';
+                stepEl.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="bg-rose-100 text-rose-500 p-2.5 rounded-xl font-bold flex items-center justify-center min-w-[40px]">
+                            ${idx + 1}
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-gray-800 text-base mb-1 flex items-center gap-2">
+                                ${step.title}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-600 mb-3">${step.desc}</p>
+                            
+                            <button onclick="toggleQuestSecret(${idx})" class="text-xs font-bold text-rose-500 hover:text-rose-600 flex items-center gap-1 bg-rose-50 px-3 py-1.5 rounded-full border border-rose-200">
+                                <i data-lucide="lock" id="lockIcon-${idx}"></i> Открыть записку
+                            </button>
+
+                            <div id="questSecret-${idx}" class="hidden mt-3 p-3 bg-rose-50/80 rounded-xl border border-rose-200 text-xs sm:text-sm text-rose-700 font-semibold italic">
+                                ${step.secretMsg}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(stepEl);
+            });
+            lucide.createIcons();
+        }
+
+        function toggleQuestSecret(idx) {
+            const secretBox = document.getElementById(`questSecret-${idx}`);
+            const lockIcon = document.getElementById(`lockIcon-${idx}`);
+            if (secretBox.classList.contains('hidden')) {
+                secretBox.classList.remove('hidden');
+                lockIcon.setAttribute('data-lucide', 'unlock');
+                confetti({ particleCount: 15, spread: 40, origin: { y: 0.8 } });
+            } else {
+                secretBox.classList.add('hidden');
+                lockIcon.setAttribute('data-lucide', 'lock');
+            }
+            lucide.createIcons();
+        }
+
+        /* ==========================================
+           GALLERY RENDER
+           ========================================== */
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            GALLERY_ITEMS.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col';
+                card.innerHTML = `
+                    <div class="relative h-44 w-full rounded-xl overflow-hidden mb-3">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
+                        <span class="absolute bottom-2 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
+                            ${item.date}
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-base mb-1">${item.title}</h3>
+                    <p class="text-xs text-gray-600 flex-1">${item.desc}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        /* ==========================================
+           CHECKLIST RENDER
+           ========================================== */
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+
+            CHECKLIST_ITEMS.forEach((item, idx) => {
+                const checkEl = document.createElement('label');
+                checkEl.className = 'flex items-center gap-3 p-3 bg-white/70 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-50 transition';
+                checkEl.innerHTML = `
+                    <input type="checkbox" onchange="toggleCheck(this)" class="w-4 h-4 accent-rose-500 rounded cursor-pointer">
+                    <span class="text-xs sm:text-sm font-semibold text-gray-700">${item}</span>
+                `;
+                container.appendChild(checkEl);
+            });
+        }
+
+        function toggleCheck(el) {
+            const textSpan = el.nextElementSibling;
+            if (el.checked) {
+                textSpan.classList.add('line-through', 'text-gray-400');
+                confetti({ particleCount: 10, spread: 30, origin: { y: 0.8 } });
+            } else {
+                textSpan.classList.remove('line-through', 'text-gray-400');
+            }
+        }
+
+        /* ==========================================
+           MODALS & UTILS
+           ========================================== */
+        function openSosModal() {
+            document.getElementById('sosModal').classList.remove('hidden');
+            confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 } });
+        }
+
+        function closeSosModal() {
+            document.getElementById('sosModal').classList.add('hidden');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // INIT ON LOAD
+        window.onload = function() {
+            lucide.createIcons();
+            renderQuest();
+            renderGallery();
+            renderChecklist();
+        };
+    </script>
+</body>
+</html>
