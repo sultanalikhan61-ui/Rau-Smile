@@ -135,7 +135,8 @@
 
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJ3a3U1czRxdDZmcWZ3czh2bnEzMXQ1bzE3OGQ0OWsyMGhhZWJmdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lq0h93752f6J9tijrh/giphy.gif" 
                  alt="Cute Hug Gif" 
-                 class="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-4 rounded-2xl shadow-md border-4 border-white object-cover">
+                 onclick="openImageModal(this.src, 'Милые обнимашки')"
+                 class="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-4 rounded-2xl shadow-md border-4 border-white object-cover cursor-pointer hover:scale-105 transition-transform">
 
             <h1 class="text-2xl sm:text-4xl font-bold text-rose-500 mb-3 leading-tight">
                 Привет, Жан!❤️
@@ -251,7 +252,7 @@
                 <h2 class="text-xl font-bold text-rose-500 mb-1 flex items-center justify-center gap-2">
                     <i data-lucide="image" class="text-rose-400"></i> Галерея Наших Воспоминаний
                 </h2>
-                <p class="text-xs sm:text-sm text-gray-500">Карточки со снимками и историями, которые греют душу</p>
+                <p class="text-xs sm:text-sm text-gray-500">Нажми на картинку, чтобы посмотреть её во весь экран</p>
             </div>
 
             <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
@@ -275,7 +276,9 @@
             </button>
 
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRraXZscHZ0OHVsYXByOTZmeDZ0MXA1aXFlZXkzbGszdHpxeXVqeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PHZ7v9tfQu0o0/giphy.gif" 
-                 alt="Warm Hug" class="w-36 h-36 mx-auto rounded-2xl mb-4 object-cover shadow-md">
+                 alt="Warm Hug" 
+                 onclick="openImageModal(this.src, 'Срочные обнимашки')"
+                 class="w-36 h-36 mx-auto rounded-2xl mb-4 object-cover shadow-md cursor-pointer hover:scale-105 transition-transform">
 
             <h3 class="text-2xl font-bold text-rose-500 mb-2 font-rounded">Срочные Обнимашки! 💖</h3>
             
@@ -290,8 +293,27 @@
         </div>
     </div>
 
+    <!-- Lightbox / Полноэкранный просмотр изображений -->
+    <div id="imageModal" 
+         class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 cursor-zoom-out"
+         onclick="closeImageModal()">
+        
+        <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+            <button onclick="closeImageModal()" 
+                    class="absolute -top-10 right-0 sm:-right-10 text-white/80 hover:text-white p-2 rounded-full transition-colors cursor-pointer text-xl">
+                ✕
+            </button>
+    
+            <img id="modalImage" 
+                 src="" 
+                 alt="Full size view" 
+                 class="max-h-[85vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10" />
+    
+            <p id="modalCaption" class="mt-3 text-center text-xs sm:text-sm text-white/80 font-medium"></p>
+        </div>
+    </div>
+
     <script>
-        // 1. Комплименты и поддержка
         const COMPLIMENTS = [
             "Ты самая невероятная и умная девушка на свете! ✨",
             "Британия даже не представляла, насколько ей повезло встретить тебя! 🇬🇧❤️",
@@ -303,7 +325,6 @@
             "Крепко-крепко обнимаю тебя и никому не отдаю! 🧸"
         ];
 
-        // 2. Этапы Квеста
         const QUEST_STEPS = [
             {
                 title: "День, когда мы познакомились ✨",
@@ -331,155 +352,33 @@
             }
         ];
 
-        // 3. Галерея фотографий с описаниями
         const GALLERY_ITEMS = [
-            {
-                title: "Пальцевое сердечко",
-                date: "Поездки",
-                desc: "Совместное селфи в машине с милым жестом.",
-                img: "1.jpeg"
-            },
-            {
-                title: "Знак «Peace»",
-                date: "Поездки",
-                desc: "Вечернее селфи в авто на фоне городских огней.",
-                img: "2.jpeg"
-            },
-            {
-                title: "Общее сердце",
-                date: "Поездки",
-                desc: "Ночной кадр в машине с большим сердечком из рук.",
-                img: "3.jpeg"
-            },
-            {
-                title: "Огни вечернего города",
-                date: "Прогулка",
-                desc: "Совместное селфи на фоне свечения ночных улиц.",
-                img: "4.jpeg"
-            },
-            {
-                title: "Счастливый четырёхлистник",
-                date: "Онлайн",
-                desc: "Скриншот переписки с зелёным брелоком-клевером.",
-                img: "5.jpeg"
-            },
-            {
-                title: "Вечер у воды",
-                date: "Атмосфера",
-                desc: "Спокойный вид на набережную и огни вдоль дороги.",
-                img: "6.jpeg"
-            },
-            {
-                title: "Ночной урбан",
-                date: "Прогулка",
-                desc: "Высотное здание с подсветкой в ночном городе.",
-                img: "7.jpeg"
-            },
-            {
-                title: "Арт-инсталляция",
-                date: "Парк",
-                desc: "Светящиеся сердца среди ночного парка.",
-                img: "8.jpeg"
-            },
-            {
-                title: "Первый снеговик",
-                date: "Зима",
-                desc: "Милый снежный человечек крупным планом.",
-                img: "9.jpeg"
-            },
-            {
-                title: "Забавный снеговик",
-                date: "Зима",
-                desc: "Улыбчивый снеговик на заснеженной улице.",
-                img: "10.jpeg"
-            },
-            {
-                title: "Грузовик Coca-Cola",
-                date: "Праздники",
-                desc: "Яркий новогодний караван Coca-Cola на вечерней улице.",
-                img: "11.jpeg"
-            },
-            {
-                title: "Милое селфи",
-                date: "Уют",
-                desc: "Крупный план с улыбкой и рукой у подбородка.",
-                img: "12.jpeg"
-            },
-            {
-                title: "Сказочный арт",
-                date: "Творчество",
-                desc: "Красочная иллюстрация в стиле принца и принцессы.",
-                img: "13.jpeg"
-            },
-            {
-                title: "Кадр с радара",
-                date: "Авто",
-                desc: "Атмосферное фото в стиле камеры наблюдения/радара.",
-                img: "14.jpeg"
-            },
-            {
-                title: "Чат и клевер",
-                date: "Детали",
-                desc: "Скриншот экрана чата с памятным брелоком.",
-                img: "15.jpeg"
-            },
-            {
-                title: "Кино под открытым небом",
-                date: "Свидание",
-                desc: "Уютный вечер за просмотром фильма на открытом воздухе.",
-                img: "16.jpeg"
-            },
-            {
-                title: "Уютный свитер",
-                date: "Тепло",
-                desc: "Кадр в белом свитере с высоким воротником.",
-                img: "17.jpeg"
-            },
-            {
-                title: "Тени-сердечки",
-                date: "Творчество",
-                desc: "Креативные тени рук в форме сердец на проекторе.",
-                img: "18.jpeg"
-            },
-            {
-                title: "Фотка на лестнице",
-                date: "Моменты",
-                desc: "Забавный кадр в капюшоне на лестничной площадке.",
-                img: "19.jpeg"
-            },
-            {
-                title: "Романтичный поцелуй",
-                date: "Любовь",
-                desc: "Очень тёплый и искренний ночной кадр.",
-                img: "20.jpeg"
-            },
-            {
-                title: "Ночной воркспейс",
-                date: "Авто",
-                desc: "Атмосферная работа за ноутбуком в салоне машины.",
-                img: "21.jpeg"
-            },
-            {
-                title: "Прогулка с соком",
-                date: "Настроение",
-                desc: "Вечернее селфи во время прогулки на свежем воздухе.",
-                img: "22.jpeg"
-            },
-            {
-                title: "Домашний уют",
-                date: "Вместе",
-                desc: "Искреннее и простое домашнее фото вдвоём.",
-                img: "23.jpeg"
-            },
-            {
-                title: "Тепло вечерней улицы",
-                date: "Прогулка",
-                desc: "Милое совместное селфи на фоне вечернего города.",
-                img: "24.jpeg"
-            }
+            { title: "Пальцевое сердечко", date: "Поездки", desc: "Совместное селфи в машине с милым жестом.", img: "1.jpeg" },
+            { title: "Знак «Peace»", date: "Поездки", desc: "Вечернее селфи в авто на фоне городских огней.", img: "2.jpeg" },
+            { title: "Общее сердце", date: "Поездки", desc: "Ночной кадр в машине с большим сердечком из рук.", img: "3.jpeg" },
+            { title: "Огни вечернего города", date: "Прогулка", desc: "Совместное селфи на фоне свечения ночных улиц.", img: "4.jpeg" },
+            { title: "Счастливый четырёхлистник", date: "Онлайн", desc: "Скриншот переписки с зелёным брелоком-клевером.", img: "5.jpeg" },
+            { title: "Вечер у воды", date: "Атмосфера", desc: "Спокойный вид на набережную и огни вдоль дороги.", img: "6.jpeg" },
+            { title: "Ночной урбан", date: "Прогулка", desc: "Высотное здание с подсветкой в ночном городе.", img: "7.jpeg" },
+            { title: "Арт-инсталляция", date: "Парк", desc: "Светящиеся сердца среди ночного парка.", img: "8.jpeg" },
+            { title: "Первый снеговик", date: "Зима", desc: "Милый снежный человечек крупным планом.", img: "9.jpeg" },
+            { title: "Забавный снеговик", date: "Зима", desc: "Улыбчивый снеговик на заснеженной улице.", img: "10.jpeg" },
+            { title: "Грузовик Coca-Cola", date: "Праздники", desc: "Яркий новогодний караван Coca-Cola на вечерней улице.", img: "11.jpeg" },
+            { title: "Милое селфи", date: "Уют", desc: "Крупный план с улыбкой и рукой у подбородка.", img: "12.jpeg" },
+            { title: "Сказочный арт", date: "Творчество", desc: "Красочная иллюстрация в стиле принца и принцессы.", img: "13.jpeg" },
+            { title: "Кадр с радара", date: "Авто", desc: "Атмосферное фото в стиле камеры наблюдения/радара.", img: "14.jpeg" },
+            { title: "Чат и клевер", date: "Детали", desc: "Скриншот экрана чата с памятным брелоком.", img: "15.jpeg" },
+            { title: "Кино под открытым небом", date: "Свидание", desc: "Уютный вечер за просмотром фильма на открытом воздухе.", img: "16.jpeg" },
+            { title: "Уютный свитер", date: "Тепло", desc: "Кадр в белом свитере с высоким воротником.", img: "17.jpeg" },
+            { title: "Тени-сердечки", date: "Творчество", desc: "Креативные тени рук в форме сердец на проекторе.", img: "18.jpeg" },
+            { title: "Фотка на лестнице", date: "Моменты", desc: "Забавный кадр в капюшоне на лестничной площадке.", img: "19.jpeg" },
+            { title: "Романтичный поцелуй", date: "Любовь", desc: "Очень тёплый и искренний ночной кадр.", img: "20.jpeg" },
+            { title: "Ночной воркспейс", date: "Авто", desc: "Атмосферная работа за ноутбуком в салоне машины.", img: "21.jpeg" },
+            { title: "Прогулка с соком", date: "Настроение", desc: "Вечернее селфи во время прогулки на свежем воздухе.", img: "22.jpeg" },
+            { title: "Домашний уют", date: "Вместе", desc: "Искреннее и простое домашнее фото вдвоём.", img: "23.jpeg" },
+            { title: "Тепло вечерней улицы", date: "Прогулка", desc: "Милое совместное селфи на фоне вечернего города.", img: "24.jpeg" }
         ];
 
-        // 4. Чек-лист
         const CHECKLIST_ITEMS = [
             "Выпить чашку тёплого чая или какао ☕",
             "Надеть самые уютные и тёплые носочки 🧦",
@@ -710,7 +609,7 @@
         }
 
         /* ==========================================
-           GALLERY RENDER
+           GALLERY RENDER (С кликом для открытия в полный размер)
            ========================================== */
         function renderGallery() {
             const grid = document.getElementById('galleryGrid');
@@ -719,11 +618,12 @@
         
             GALLERY_ITEMS.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col';
+                card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col cursor-pointer';
+                card.onclick = () => openImageModal(item.img, item.title + " — " + item.desc);
                 card.innerHTML = `
-                    <div class="relative h-44 w-full rounded-xl overflow-hidden mb-3">
-                        <img src="${item.img}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover">
-                        <span class="absolute bottom-2 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
+                    <div class="relative h-48 w-full rounded-xl overflow-hidden mb-3 bg-gray-100">
+                        <img src="${item.img}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <span class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
                             ${item.date}
                         </span>
                     </div>
@@ -779,16 +679,39 @@
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // INIT ON LOAD
-        window.onload = function() {
-            lucide.createIcons();
-            renderQuest();
-            renderGallery();
-            renderChecklist();
-            updateCountdown();
-        };
+        /* ==========================================
+           IMAGE LIGHTBOX MODAL
+           ========================================== */
+        function openImageModal(imageSrc, caption = '') {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+        
+            modalImg.src = imageSrc;
+            modalCaption.textContent = caption;
+        
+            modal.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+            modal.classList.add('flex', 'opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+        
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 200);
+        }
 
-        // Даты: отлёт и возвращение
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeImageModal();
+        });
+
         const startDate = new Date('2026-09-19T00:00:00').getTime();
         const targetDate = new Date('2027-09-22T00:00:00').getTime();
         
@@ -820,64 +743,15 @@
             }
         }
 
-        /* ==========================================
-           IMAGE LIGHTBOX MODAL
-           ========================================== */
-        function openImageModal(imageSrc, caption = '') {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalCaption = document.getElementById('modalCaption');
-        
-            modalImg.src = imageSrc;
-            modalCaption.textContent = caption;
-        
-            modal.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
-            modal.classList.add('flex', 'opacity-100', 'pointer-events-auto');
-            document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
-        }
-        
-        function closeImageModal() {
-            const modal = document.getElementById('imageModal');
-        
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.classList.remove('opacity-100', 'pointer-events-auto');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.style.overflow = ''; // Возвращаем прокрутку
-            }, 200);
-        }
-        
-        // Закрытие по клавише Esc
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeImageModal();
-        });
-        
+        window.onload = function() {
+            lucide.createIcons();
+            renderQuest();
+            renderGallery();
+            renderChecklist();
+            updateCountdown();
+        };
+
         setInterval(updateCountdown, 60000);
     </script>
-
-    <!-- Modal / Lightbox for Images -->
-    <div id="imageModal" 
-         class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 cursor-zoom-out"
-         onclick="closeImageModal()">
-        
-        <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
-            <!-- Кнопка закрытия -->
-            <button onclick="closeImageModal()" 
-                    class="absolute -top-10 right-0 sm:-right-10 text-white/80 hover:text-white p-2 rounded-full transition-colors cursor-pointer text-xl">
-                ✕
-            </button>
-    
-            <!-- Картинка -->
-            <img id="modalImage" 
-                 src="" 
-                 alt="Full size view" 
-                 class="max-h-[85vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10" />
-    
-            <!-- Подпись к фото (если есть) -->
-            <p id="modalCaption" class="mt-3 text-center text-xs sm:text-sm text-white/80 font-medium"></p>
-        </div>
-    </div>
 </body>
 </html>
