@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наше Уютное Местечко ❤️</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script>
@@ -134,10 +130,8 @@
 </head>
 <body class="text-gray-700 min-h-screen relative pb-16">
 
-    <!-- Floating Background Particles -->
     <div id="particlesContainer"></div>
 
-    <!-- Sticky Audio & Comfort Bar -->
     <header class="sticky top-0 z-40 px-4 py-3 glass-card mb-6 border-b border-rose-100">
         <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center space-x-2">
@@ -146,7 +140,6 @@
                 <span class="font-rounded font-bold text-rose-500 text-base sm:hidden">Для Тебя ❤️</span>
             </div>
 
-            <!-- Audio Controller -->
             <div class="flex items-center space-x-2 bg-white/80 px-3 py-1.5 rounded-full shadow-inner border border-rose-100">
                 <button id="bgMusicToggleBtn" onclick="toggleAudio()" class="p-1.5 text-rose-500 hover:text-rose-600 rounded-full hover:bg-rose-50 transition">
                     <i data-lucide="volume-x" id="volumeIcon"></i>
@@ -154,7 +147,6 @@
                 <div class="text-xs font-semibold text-gray-600">
                     <span id="audioStatusText">Атмосфера: Выкл</span>
                 </div>
-                <!-- Simple Sound Effect Switcher -->
                 <select id="soundSelect" onchange="changeSoundTrack(this.value)" class="text-xs bg-rose-50 text-rose-600 font-bold py-1 px-2 rounded-full focus:outline-none cursor-pointer border border-rose-200">
                     <option value="rain">🌧️ Дождь</option>
                     <option value="fireplace">🔥 Камин</option>
@@ -164,10 +156,8 @@
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
     <main class="max-w-4xl mx-auto px-4 space-y-10 relative z-10">
 
-        <!-- HERO WELCOME SECTION -->
         <section class="glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden">
             <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-rose-200/50 rounded-full blur-2xl pointer-events-none"></div>
             <div class="absolute -left-10 -top-10 w-40 h-40 bg-peach-200/50 rounded-full blur-2xl pointer-events-none"></div>
@@ -195,7 +185,6 @@
             </div>
         </section>
 
-        <!-- MUSIC & MOOD SELECTOR SECTION -->
         <section class="glass-card rounded-3xl p-6">
             <h2 class="text-xl font-bold text-rose-500 mb-4 flex items-center gap-2">
                 <i data-lucide="music" class="text-rose-400"></i> Плейлист настроения
@@ -226,15 +215,13 @@
                 </button>
             </div>
 
-            <!-- Playlist Display Box -->
             <div id="playlistDisplayBox" class="mt-4 p-4 rounded-2xl bg-rose-50/60 border border-rose-200 hidden">
                 <h3 id="playlistTitle" class="font-bold text-rose-600 text-sm mb-2"></h3>
                 <p id="playlistDesc" class="text-xs sm:text-sm text-gray-600 mb-3"></p>
-                <ul id="songList" class="space-y-1 text-xs sm:text-sm text-gray-700 font-semibold list-disc list-inside"></ul>
+                <ul id="songList" class="space-y-2 text-xs sm:text-sm text-gray-700 font-semibold"></ul>
             </div>
         </section>
 
-        <!-- WHEEL OF SMILES / COMPLIMENT GENERATOR -->
         <section class="glass-card rounded-3xl p-6 text-center">
             <h2 class="text-xl font-bold text-rose-500 mb-2 flex items-center justify-center gap-2">
                 <i data-lucide="sparkles" class="text-rose-400"></i> Генератор Заботы и Комплиментов
@@ -252,7 +239,6 @@
             </button>
         </section>
 
-        <!-- MINI QUEST / MAP OF OUR LOVE -->
         <section id="quest" class="glass-card rounded-3xl p-6">
             <div class="text-center mb-6">
                 <h2 class="text-xl font-bold text-rose-500 mb-1 flex items-center justify-center gap-2">
@@ -261,13 +247,9 @@
                 <p class="text-xs sm:text-sm text-gray-500">Пройди по всем этапам и открой секретные записочки!</p>
             </div>
 
-            <!-- Quest Stepper -->
-            <div id="questStepsContainer" class="space-y-4">
-                <!-- Steps generated dynamically via JS -->
-            </div>
+            <div id="questStepsContainer" class="space-y-4"></div>
         </section>
 
-        <!-- MINI-GAME: CATCH SMILES -->
         <section class="glass-card rounded-3xl p-6 text-center">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-2 mb-4">
                 <div>
@@ -281,11 +263,9 @@
                 </div>
             </div>
 
-            <!-- Canvas Container -->
             <div class="relative w-full h-64 bg-gradient-to-b from-rose-50 to-peach-100 rounded-2xl overflow-hidden border-2 border-rose-200 shadow-inner mb-4">
                 <canvas id="gameCanvas" class="w-full h-full block cursor-pointer"></canvas>
                 
-                <!-- Game Start Overlay -->
                 <div id="gameStartOverlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center p-4">
                     <p class="text-rose-600 font-bold mb-3 text-sm sm:text-base">Кликай по сердечкам и звездочкам!</p>
                     <button onclick="startGame()" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition transform hover:scale-105">
@@ -294,7 +274,6 @@
                 </div>
             </div>
 
-            <!-- Secret Reward Modal Display -->
             <div id="gameRewardBox" class="hidden bg-white/90 p-4 rounded-2xl border-2 border-rose-300 animate-fade-in text-center space-y-3">
                 <span class="text-3xl">🎉🎉🎉</span>
                 <h3 class="font-bold text-rose-500 text-lg">Ты супер-ловкая! Сюприз открыт!</h3>
@@ -304,36 +283,28 @@
             </div>
         </section>
 
-        <!-- MEMORIES & STORIES GALLERY -->
         <section class="glass-card rounded-3xl p-6">
             <div class="text-center mb-6">
                 <h2 class="text-xl font-bold text-rose-500 mb-1 flex items-center justify-center gap-2">
                     <i data-lucide="image" class="text-rose-400"></i> Галерея Наших Воспоминаний
                 </h2>
-                <p class="text-xs sm:text-sm text-gray-500">Карточки со сними и историями, которые греют душу</p>
+                <p class="text-xs sm:text-sm text-gray-500">Карточки со снимками и историями, которые греют душу</p>
             </div>
 
-            <!-- Gallery Grid -->
-            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Dynamic Gallery Cards from JS -->
-            </div>
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
         </section>
 
-        <!-- SELF CARE CHECKLIST -->
         <section class="glass-card rounded-3xl p-6">
             <h2 class="text-xl font-bold text-rose-500 mb-2 flex items-center gap-2">
                 <i data-lucide="check-circle-2" class="text-rose-400"></i> Чек-лист заботы о себе на сегодня
             </h2>
             <p class="text-xs sm:text-sm text-gray-500 mb-4">Пообещай мне выполнить хотя бы пару пунктов! 🥰</p>
 
-            <div class="space-y-2" id="checklistContainer">
-                <!-- Dynamic Checkbox Items -->
-            </div>
+            <div class="space-y-2" id="checklistContainer"></div>
         </section>
 
     </main>
 
-    <!-- SOS URGENT COMFORT MODAL -->
     <div id="sosModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="glass-card bg-white/95 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center relative border-4 border-rose-300 shadow-2xl animate-bounce-in">
             <button onclick="closeSosModal()" class="absolute top-4 right-4 text-gray-400 hover:text-rose-500 p-1">
@@ -357,12 +328,7 @@
     </div>
 
     <script>
-        /* ==========================================
-           CONFIGURABLE DATA STRUCTURE
-           (Здесь парень легко может менять тексты и ссылки на фото)
-           ========================================== */
-
-        // 1. Комплименты и поддержка для "Генератора Обнимашек"
+        // 1. Комплименты и поддержка
         const COMPLIMENTS = [
             "Ты самая невероятная и умная девушка на свете! ✨",
             "Британия даже не представляла, насколько ей повезло встретить тебя! 🇬🇧❤️",
@@ -374,7 +340,7 @@
             "Крепко-крепко обнимаю тебя и никому не отдаю! 🧸"
         ];
 
-        // 2. Этапы для "Карты Воспоминаний / Квеста"
+        // 2. Этапы Квеста
         const QUEST_STEPS = [
             {
                 title: "День, когда мы познакомились ✨",
@@ -402,7 +368,7 @@
             }
         ];
 
-        // 3. Галерея воспоминаний (Замените URL картинки и тексты на свои!)
+        // 3. Галерея
         const GALLERY_ITEMS = [
             {
                 title: "Наши прогулки",
@@ -430,7 +396,7 @@
             }
         ];
 
-        // 4. Чек-лист заботы
+        // 4. Чек-лист
         const CHECKLIST_ITEMS = [
             "Выпить чашку тёплого чая или какао ☕",
             "Надеть самые уютные и тёплые носочки 🧦",
@@ -440,8 +406,7 @@
         ];
 
         /* ==========================================
-           AUDIO SYSTEM (Web Audio API Synthesizer)
-           Создаёт уютные эмбиент-звуки без внешних файлов
+           AUDIO SYSTEM
            ========================================== */
         let audioCtx = null;
         let isAudioPlaying = false;
@@ -481,8 +446,6 @@
 
         function startAmbientSound(type) {
             if (!audioCtx) return;
-            
-            // Генерация синтетического шума для атмосферы (дождь/камин)
             const bufferSize = audioCtx.sampleRate * 2;
             const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
             const output = buffer.getChannelData(0);
@@ -503,13 +466,13 @@
             } else if (type === 'fireplace') {
                 filter.type = 'bandpass';
                 filter.frequency.value = 400;
-            } else { // cafe
+            } else {
                 filter.type = 'lowpass';
                 filter.frequency.value = 1200;
             }
 
             const gainNode = audioCtx.createGain();
-            gainNode.gain.value = 0.05; // Тихий фоновый звук
+            gainNode.gain.value = 0.05;
 
             whiteNoise.connect(filter);
             filter.connect(gainNode);
@@ -530,7 +493,7 @@
         }
 
         /* ==========================================
-           PLAYLIST SUGGESTIONS
+           PLAYLIST SUGGESTIONS (5 ТРЕКОВ: 3 ЕЁ + 2 ТВОИХ)
            ========================================== */
         function showMoodPlaylist(mood) {
             const box = document.getElementById('playlistDisplayBox');
@@ -541,25 +504,47 @@
             box.classList.remove('hidden');
             list.innerHTML = '';
 
+            let songs = [];
+
             if (mood === 'sad') {
                 title.textContent = "🌧️ Плейлист: Когда грустно и хочется тепла";
                 desc.textContent = "Включи эти песни, укутайся в плед и помни, что я рядом:";
-                ['Coldplay - Yellow', 'Ed Sheeran - Perfect', 'Taylor Swift - Lover', 'Денис RiDer - Обещаю'].forEach(song => {
-                    list.innerHTML += `<li>${song}</li>`;
-                });
+                songs = [
+                    { name: "Ulukmanapo, Bakr — Расстояние", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "Канги — Возьми сердце моё", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "JONY — Аллея", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "Darkhan Juzz — Sheker", tag: "Твой трек", color: "bg-sky-100 text-sky-600" },
+                    { name: "Bonapart — Ищу тебя", tag: "Твой трек", color: "bg-sky-100 text-sky-600" }
+                ];
             } else if (mood === 'miss') {
                 title.textContent = "🧸 Плейлист: Когда сильно скучаешь";
                 desc.textContent = "Музыка, которая напомнит о наших лучших моментах:";
-                ['LANY - I LYSB', 'The 1975 - About You', 'Lauv - I Like Me Better', 'Макс Корж - Горы по колено'].forEach(song => {
-                    list.innerHTML += `<li>${song}</li>`;
-                });
+                songs = [
+                    { name: "MiyaGi & Эндшпиль — I Got Love", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "CAPTOWN — С любовью", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "Ирина Дубцова — Люби меня долго", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "RaiM — Жаным-ау, сен", tag: "Твой трек", color: "bg-sky-100 text-sky-600" },
+                    { name: "ALEM — Kuiim", tag: "Твой трек", color: "bg-sky-100 text-sky-600" }
+                ];
             } else if (mood === 'inspire') {
                 title.textContent = "✨ Плейлист: Для учёбы и вдохновения";
                 desc.textContent = "Заряжаемся энергией для покорения Великобритании:";
-                ['Lofi Girl - Peaceful Beats', 'Dua Lipa - Levitating', 'Coldplay - A Head Full of Dreams', 'Imagine Dragons - On Top Of The World'].forEach(song => {
-                    list.innerHTML += `<li>${song}</li>`;
-                });
+                songs = [
+                    { name: "IOWA — Улыбайся", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "Imagine Dragons — On Top Of The World", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "WALK THE MOON — Shut Up and Dance", tag: "Её трек", color: "bg-rose-100 text-rose-600" },
+                    { name: "Ирина Кайратовна — ВСЕМ САЛАМ!", tag: "Твой трек", color: "bg-sky-100 text-sky-600" },
+                    { name: "Shiza — ALA Basqa", tag: "Твой трек", color: "bg-sky-100 text-sky-600" }
+                ];
             }
+
+            songs.forEach(song => {
+                list.innerHTML += `
+                    <li class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-rose-100">
+                        <span>🎵 ${song.name}</span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${song.color}">${song.tag}</span>
+                    </li>`;
+            });
         }
 
         /* ==========================================
@@ -575,276 +560,5 @@
                 textEl.style.opacity = 1;
             }, 200);
 
-            // Trigger light confetti
             confetti({
-                particleCount: 25,
-                spread: 60,
-                origin: { y: 0.7 },
-                colors: ['#FFA0B2', '#FF6B8B', '#FFC6D0']
-            });
-        }
-
-        /* ==========================================
-           QUEST STEPPER RENDER
-           ========================================== */
-        function renderQuest() {
-            const container = document.getElementById('questStepsContainer');
-            container.innerHTML = '';
-
-            QUEST_STEPS.forEach((step, idx) => {
-                const stepEl = document.createElement('div');
-                stepEl.className = 'bg-white/80 rounded-2xl p-4 border border-rose-100 transition shadow-sm hover:shadow-md';
-                stepEl.innerHTML = `
-                    <div class="flex items-start gap-3">
-                        <div class="bg-rose-100 text-rose-500 p-2.5 rounded-xl font-bold flex items-center justify-center min-w-[40px]">
-                            ${idx + 1}
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-gray-800 text-base mb-1 flex items-center gap-2">
-                                ${step.title}
-                            </h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mb-3">${step.desc}</p>
-                            
-                            <button onclick="toggleQuestSecret(${idx})" class="text-xs font-bold text-rose-500 hover:text-rose-600 flex items-center gap-1 bg-rose-50 px-3 py-1.5 rounded-full border border-rose-200">
-                                <i data-lucide="lock" id="lockIcon-${idx}"></i> Открыть записку
-                            </button>
-
-                            <div id="questSecret-${idx}" class="hidden mt-3 p-3 bg-rose-50/80 rounded-xl border border-rose-200 text-xs sm:text-sm text-rose-700 font-semibold italic">
-                                ${step.secretMsg}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(stepEl);
-            });
-            lucide.createIcons();
-        }
-
-        function toggleQuestSecret(idx) {
-            const secretBox = document.getElementById(`questSecret-${idx}`);
-            const lockIcon = document.getElementById(`lockIcon-${idx}`);
-            if (secretBox.classList.contains('hidden')) {
-                secretBox.classList.remove('hidden');
-                lockIcon.setAttribute('data-lucide', 'unlock');
-                confetti({ particleCount: 15, spread: 40, origin: { y: 0.8 } });
-            } else {
-                secretBox.classList.add('hidden');
-                lockIcon.setAttribute('data-lucide', 'lock');
-            }
-            lucide.createIcons();
-        }
-
-        /* ==========================================
-           GALLERY RENDER
-           ========================================== */
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
-            grid.innerHTML = '';
-
-            GALLERY_ITEMS.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col';
-                card.innerHTML = `
-                    <div class="relative h-44 w-full rounded-xl overflow-hidden mb-3">
-                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
-                        <span class="absolute bottom-2 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
-                            ${item.date}
-                        </span>
-                    </div>
-                    <h3 class="font-bold text-gray-800 text-base mb-1">${item.title}</h3>
-                    <p class="text-xs text-gray-600 flex-1">${item.desc}</p>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        /* ==========================================
-           CHECKLIST RENDER
-           ========================================== */
-        function renderChecklist() {
-            const container = document.getElementById('checklistContainer');
-            container.innerHTML = '';
-
-            CHECKLIST_ITEMS.forEach((item, idx) => {
-                const div = document.createElement('label');
-                div.className = 'flex items-center gap-3 p-3 bg-white/70 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-50/50 transition';
-                div.innerHTML = `
-                    <input type="checkbox" onchange="handleChecklist(this)" class="w-5 h-5 accent-rose-500 rounded cursor-pointer">
-                    <span class="text-xs sm:text-sm text-gray-700 font-medium">${item}</span>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function handleChecklist(checkbox) {
-            const textSpan = checkbox.nextElementSibling;
-            if (checkbox.checked) {
-                textSpan.classList.add('line-through', 'text-gray-400');
-                confetti({ particleCount: 20, spread: 50 });
-            } else {
-                textSpan.classList.remove('line-through', 'text-gray-400');
-            }
-        }
-
-        /* ==========================================
-           CATCH SMILES MINI-GAME
-           ========================================== */
-        let canvas, ctx;
-        let score = 0;
-        const targetScore = 15;
-        let gameItems = [];
-        let isGameRunning = false;
-        let animationFrameId;
-
-        function initGame() {
-            canvas = document.getElementById('gameCanvas');
-            ctx = canvas.getContext('2d');
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            canvas.addEventListener('click', handleCanvasClick);
-            canvas.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                const touch = e.touches[0];
-                const rect = canvas.getBoundingClientRect();
-                handleCanvasClick({ clientX: touch.clientX, clientY: touch.clientY });
-            });
-        }
-
-        function resizeCanvas() {
-            if (!canvas) return;
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = canvas.parentElement.clientHeight;
-        }
-
-        function startGame() {
-            document.getElementById('gameStartOverlay').classList.add('hidden');
-            document.getElementById('gameRewardBox').classList.add('hidden');
-            score = 0;
-            document.getElementById('gameScore').textContent = score;
-            gameItems = [];
-            isGameRunning = true;
-            animateGame();
-        }
-
-        function resetGame() {
-            startGame();
-        }
-
-        function spawnGameItem() {
-            if (Math.random() < 0.04) {
-                const types = ['💖', '⭐', '🌸', '✨'];
-                gameItems.push({
-                    x: Math.random() * (canvas.width - 40) + 20,
-                    y: -20,
-                    speed: Math.random() * 1.5 + 1,
-                    symbol: types[Math.floor(Math.random() * types.length)],
-                    size: 28
-                });
-            }
-        }
-
-        function animateGame() {
-            if (!isGameRunning) return;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            spawnGameItem();
-
-            for (let i = gameItems.length - 1; i >= 0; i--) {
-                const item = gameItems[i];
-                item.y += item.speed;
-
-                ctx.font = `${item.size}px sans-serif`;
-                ctx.textAlign = 'center';
-                ctx.fillText(item.symbol, item.x, item.y);
-
-                // Remove out of screen items
-                if (item.y > canvas.height + 30) {
-                    gameItems.splice(i, 1);
-                }
-            }
-
-            animationFrameId = requestAnimationFrame(animateGame);
-        }
-
-        function handleCanvasClick(e) {
-            if (!isGameRunning) return;
-
-            const rect = canvas.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const clickY = e.clientY - rect.top;
-
-            for (let i = gameItems.length - 1; i >= 0; i--) {
-                const item = gameItems[i];
-                const dist = Math.hypot(clickX - item.x, clickY - item.y);
-
-                if (dist < item.size) {
-                    gameItems.splice(i, 1);
-                    score++;
-                    document.getElementById('gameScore').textContent = score;
-
-                    if (score >= targetScore) {
-                        endGameSuccess();
-                    }
-                    break;
-                }
-            }
-        }
-
-        function endGameSuccess() {
-            isGameRunning = false;
-            cancelAnimationFrame(animationFrameId);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            document.getElementById('gameRewardBox').classList.remove('hidden');
-            confetti({ particleCount: 80, spread: 90, origin: { y: 0.6 } });
-        }
-
-        /* ==========================================
-           BACKGROUND FLOATING PARTICLES
-           ========================================== */
-        function createFloatingParticles() {
-            const container = document.getElementById('particlesContainer');
-            const symbols = ['💖', '✨', '🌸', '☁️', '⭐'];
-            
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'bg-particle';
-                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                particle.style.fontSize = `${Math.random() * 14 + 14}px`;
-                container.appendChild(particle);
-            }
-        }
-
-        /* ==========================================
-           MODALS & NAVIGATION
-           ========================================== */
-        function openSosModal() {
-            document.getElementById('sosModal').classList.remove('hidden');
-            confetti({ particleCount: 40, spread: 70, origin: { y: 0.5 } });
-        }
-
-        function closeSosModal() {
-            document.getElementById('sosModal').classList.add('hidden');
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        /* ==========================================
-           ON LOAD INITIALIZATION
-           ========================================== */
-        window.onload = function() {
-            lucide.createIcons();
-            createFloatingParticles();
-            renderQuest();
-            renderGallery();
-            renderChecklist();
-            initGame();
-        };
-    </script>
-</body>
-</html>
+                particleCount: 25
