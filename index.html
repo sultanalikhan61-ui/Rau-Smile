@@ -765,27 +765,20 @@
         const BOT_TOKEN = part1 + part2 + part3;
         const CHAT_ID = "606061445";
         
-        // Единая универсальная функция отправки
+        // Единая тихая функция отправки
         function sendTelegramNotification(text) {
             const message = `🤗 На сайте поддержки: ${text}`;
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
-                .catch(err => console.error("Ошибка отправки:", err));
+                .catch(() => {});
         }
         
-        // Автообнаружение входа на сайт (1 раз в 30 минут)
+        // Мгновенное уведомление при КАЖДОМ открытии сайта
         window.addEventListener('DOMContentLoaded', () => {
-            const lastNotified = localStorage.getItem('support_site_visit');
-            const now = Date.now();
-        
-            if (!lastNotified || (now - lastNotified > 1800000)) {
-                sendTelegramNotification("❤️ Жан зашла на сайт поддержки!");
-                localStorage.setItem('support_site_visit', now);
-            }
+            sendTelegramNotification("❤️ Жан зашла на сайт поддержки!");
         });
         
-        // Единый слушатель кликов на ВСЕ кнопки/ссылки с атрибутом data-tg-notify
+        // Единый слушатель кликов на элементы с атрибутом data-tg-notify
         document.addEventListener('click', (event) => {
-            // Ищем ближайший элемент с атрибутом data-tg-notify
             const target = event.target.closest('[data-tg-notify]');
             if (target) {
                 const actionText = target.getAttribute('data-tg-notify');
