@@ -112,7 +112,7 @@
             </div>
 
             <div class="flex items-center space-x-2 bg-white/80 px-3 py-1.5 rounded-full shadow-inner border border-rose-100">
-                <button id="bgMusicToggleBtn" onclick="toggleAudio()" class="p-1.5 text-rose-500 hover:text-rose-600 rounded-full hover:bg-rose-50 transition">
+                <button id="bgMusicToggleBtn" onclick="toggleAudio()" data-tg-notify="🚨 Нажала «Включить звук»" class="p-1.5 text-rose-500 hover:text-rose-600 rounded-full hover:bg-rose-50 transition">
                     <i data-lucide="volume-x" id="volumeIcon"></i>
                 </button>
                 <div class="text-xs font-semibold text-gray-600">
@@ -148,10 +148,10 @@
             </p>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="scrollToSection('quest')" class="bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition active:scale-95 flex items-center gap-2">
+                <button onclick="scrollToSection('quest')" data-tg-notify="🚨 Нажала «Начать Квест Воспоминаний»" class="bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition active:scale-95 flex items-center gap-2">
                     <i data-lucide="map-pin"></i> Начать Квест Воспоминаний
                 </button>
-                <button onclick="openSosModal()" class="sos-btn-glow bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition active:scale-95 flex items-center gap-2">
+                <button onclick="openSosModal()" data-tg-notify="🚨 Нажала «Срочно Нужны Обнимашки!»" class="sos-btn-glow bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition active:scale-95 flex items-center gap-2">
                     <i data-lucide="heart-handshake"></i> Срочно Нужны Обнимашки!
                 </button>
             </div>
@@ -189,21 +189,21 @@
             <p class="text-xs sm:text-sm text-gray-500 mb-4">Нажми на эмоцию, чтобы открыть треки:</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <button onclick="showMoodPlaylist('sad')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
+                <button onclick="showMoodPlaylist('sad')" data-tg-notify="🚨 Нажала «Когда грустно»" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
                     <span class="text-2xl group-hover:scale-125 transition">🌧️</span>
                     <div>
                         <div class="font-bold text-sm text-gray-700">Когда грустно</div>
                         <div class="text-xs text-gray-400">Тёплые слова и уют</div>
                     </div>
                 </button>
-                <button onclick="showMoodPlaylist('miss')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
+                <button onclick="showMoodPlaylist('miss')" data-tg-notify="🚨 Нажала «Когда скучаешь»" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
                     <span class="text-2xl group-hover:scale-125 transition">🧸</span>
                     <div>
                         <div class="font-bold text-sm text-gray-700">Когда скучаешь</div>
                         <div class="text-xs text-gray-400">Вспомни наши моменты</div>
                     </div>
                 </button>
-                <button onclick="showMoodPlaylist('inspire')" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
+                <button onclick="showMoodPlaylist('inspire')" data-tg-notify="🚨 Нажала «Для вдохновения»" class="p-4 rounded-2xl bg-white/70 border border-rose-100 hover:bg-rose-50 transition text-left flex items-center gap-3 group cursor-pointer shadow-sm hover:shadow-md">
                     <span class="text-2xl group-hover:scale-125 transition">✨</span>
                     <div>
                         <div class="font-bold text-sm text-gray-700">Для вдохновения</div>
@@ -231,7 +231,7 @@
                 </p>
             </div>
 
-            <button onclick="generateCompliment()" class="bg-rose-400 hover:bg-rose-500 text-white font-bold py-3 px-8 rounded-full shadow-md transition active:scale-95 flex items-center gap-2 mx-auto">
+            <button onclick="generateCompliment()" data-tg-notify="🚨 Нажала «Хочу Комплимент / Обнимашку!»" class="bg-rose-400 hover:bg-rose-500 text-white font-bold py-3 px-8 rounded-full shadow-md transition active:scale-95 flex items-center gap-2 mx-auto">
                 <i data-lucide="gift"></i> Хочу Комплимент / Обнимашку!
             </button>
         </section>
@@ -524,6 +524,7 @@
                 list.innerHTML += `
                     <li>
                         <a href="${song.url}" target="_blank" rel="noopener noreferrer" 
+                           data-tg-notify="🎶 Включила трек: ${song.name}"
                            class="flex items-center justify-between bg-white/80 hover:bg-white p-3 rounded-xl border border-rose-100 transition-all hover:scale-[1.01] hover:shadow-md active:scale-[0.99] cursor-pointer group">
                             <div class="flex items-center gap-2 overflow-hidden">
                                 <span class="text-rose-500 group-hover:scale-110 transition-transform">🎧</span>
@@ -619,6 +620,10 @@
             GALLERY_ITEMS.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden p-3 border border-rose-100 flex flex-col cursor-pointer';
+                
+                // Добавляем атрибут для отправки уведомления в Telegram
+                card.setAttribute('data-tg-notify', `🖼 Открыла фото: ${item.title}`);
+        
                 card.onclick = () => openImageModal(item.img, item.title + " — " + item.desc);
                 card.innerHTML = `
                     <div class="relative h-48 w-full rounded-xl overflow-hidden mb-3 bg-gray-100">
@@ -751,42 +756,42 @@
             updateCountdown();
         };
         
-        // Разбивка токена, чтобы GitHub не заблокировал его при коммите
+
+        // Токен и Chat ID
         const part1 = "8818384063:";
         const part2 = "AAEEqTup6sgED-gYB_1tm";
         const part3 = "cQKcXwi-UDE3lQ";
         
         const BOT_TOKEN = part1 + part2 + part3;
         const CHAT_ID = "606061445";
-    
-        // 1. Уведомление о ВХОДЕ на сайт (значит, ей сейчас нужна поддержка)
-        function notifyVisit() {
+        
+        // Единая универсальная функция отправки
+        function sendTelegramNotification(text) {
+            const message = `🤗 На сайте поддержки: ${text}`;
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
+                .catch(err => console.error("Ошибка отправки:", err));
+        }
+        
+        // Автообнаружение входа на сайт (1 раз в 30 минут)
+        window.addEventListener('DOMContentLoaded', () => {
             const lastNotified = localStorage.getItem('support_site_visit');
             const now = Date.now();
-    
-            // Отправляем, если зашла впервые или прошло больше 30 минут с последнего входа
+        
             if (!lastNotified || (now - lastNotified > 1800000)) {
-                const message = "❤️ Жан зашла на сайт поддержки. Похоже, ей сейчас грустно или нужна твоя забота!";
-                
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
-                    .then(res => {
-                        if (res.ok) {
-                            localStorage.setItem('support_site_visit', now);
-                        }
-                    })
-                    .catch(err => console.error("Ошибка отправки:", err));
+                sendTelegramNotification("❤️ Жан зашла на сайт поддержки!");
+                localStorage.setItem('support_site_visit', now);
             }
-        }
-    
-        // Вызываем сразу при загрузке
-        window.addEventListener('DOMContentLoaded', notifyVisit);
-    
-        // 2. Дополнительная функция: если на сайте есть интерактивные кнопки
-        // (например, onclick="sendActionNotification('Нажала кнопку: Хочу обняться')")
-        function sendActionNotification(actionText) {
-            const message = `🤗 На сайте поддержки: ${actionText}`;
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`);
-        }
+        });
+        
+        // Единый слушатель кликов на ВСЕ кнопки/ссылки с атрибутом data-tg-notify
+        document.addEventListener('click', (event) => {
+            // Ищем ближайший элемент с атрибутом data-tg-notify
+            const target = event.target.closest('[data-tg-notify]');
+            if (target) {
+                const actionText = target.getAttribute('data-tg-notify');
+                sendTelegramNotification(actionText);
+            }
+        });
 
         setInterval(updateCountdown, 60000);
     </script>
